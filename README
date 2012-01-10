@@ -1,0 +1,35 @@
+First look at http://wiki.cyanogenmod.com/index.php?title=Compile_CyanogenMod_for_Passion to download dependencies and cyanogensource code
+
+
+
+Add this device tree to cyanogenmod sources so you get
+
+  <cyanogenrootfolder>/device/acer/liquid/
+  <cyanogenrootfolder>/vendor/acer/liquid/
+  <cyanogenrootfolder>/patches
+
+Apply all the patches in <cyanogenrootfolder>/patches
+
+   i.e patch -p1 < FILENAME.diff
+
+(if you have already modify your tree and patches can't be applied, run:
+   repo forall -c git reset --hard)
+
+You can now start building :) 
+
+
+
+
+
+
+
+
+
+
+//commands (from <cyanogenrootfolder>)
+
+source build/envsetup.sh
+
+breakfast liquid
+
+mka -jx (2*cores)
