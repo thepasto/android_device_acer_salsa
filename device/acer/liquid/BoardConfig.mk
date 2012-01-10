@@ -105,7 +105,7 @@ BOARD_PAGE_SIZE := 0x00001000
 TARGET_PREBUILT_KERNEL := device/acer/liquid/kernel
 
 BOARD_KERNEL_CMDLINE := console=ttyDCC0 androidboot.hardware=qcom
-BOARD_EGL_CFG := device/acer/liquid/egl.cfg
+BOARD_EGL_CFG := device/acer/liquid/proptietary/egl.cfg
 
 #BOARD_USES_HGL := true
 #BOARD_HAS_FLIPPED_SCREEN := true
