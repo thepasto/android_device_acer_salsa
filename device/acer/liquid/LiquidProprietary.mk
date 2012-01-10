@@ -25,7 +25,7 @@ PRODUCT_COPY_FILES += \
 ## (2) Keypad and Touchscreen
 PRODUCT_COPY_FILES += \
     device/acer/liquid/proprietary/qwerty.kl:system/usr/keylayout/qwerty.kl \
-    device/acer/liquid/proprietary/a1_keypad.kl:system/usr/keylayout/a1_keypad.kl \
+    device/acer/liquid/proprietary/a1-keypad.kl:system/usr/keylayout/a1-keypad.kl \
     device/acer/liquid/proprietary/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
     device/acer/liquid/proprietary/auo-touch.idc:system/usr/idc/auo-touch.idc \
     device/acer/liquid/proprietary/qwerty.idc:system/usr/keylayout/qwerty.idc
