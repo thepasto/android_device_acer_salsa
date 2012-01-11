@@ -1,7 +1,7 @@
 diff --git a/hardware/ril/libril/ril.cpp b/hardware/ril/libril/ril.cpp
 index d1d5d3b..5bb7a86 100644
---- a/libril/ril.cpp
-+++ b/libril/ril.cpp
+--- a/hardware/ril/libril/ril.cpp
++++ b/hardware/ril/libril/ril.cpp
 @@ -245,6 +245,8 @@ static UserCallbackInfo * internalRequestTimedCallback
      (RIL_TimedCallback callback, void *param,
          const struct timeval *relativeTime);
@@ -43,8 +43,8 @@ index d1d5d3b..5bb7a86 100644
  const char *
 diff --git a/hardware/ril/libril/ril_event.cpp b/hardware/ril/libril/ril_event.cpp
 index 4a4b330..cac39dd 100644
---- a/libril/ril_event.cpp
-+++ b/libril/ril_event.cpp
+--- a/hardware/ril/libril/ril_event.cpp
++++ b/hardware/ril/libril/ril_event.cpp
 @@ -122,15 +122,19 @@ static void addToList(struct ril_event * ev, struct ril_event * list)
      dump_event(ev);
  }
