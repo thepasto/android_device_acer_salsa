@@ -31,6 +31,11 @@ PRODUCT_PACKAGES += \
     #libmemalloc \
     #libtilerenderer
 
+#Audio
+PRODUCT_PACKAGES += \
+    audio_policy.salsa \
+    audio.primary.salsa
+
 # proprietary side of the device
 $(call inherit-product-if-exists, vendor/acer/liquid/liquid-vendor.mk)
 
