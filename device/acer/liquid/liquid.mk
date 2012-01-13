@@ -90,6 +90,7 @@ $(call inherit-product-if-exists, device/acer/liquid/LiquidProprietary.mk)
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 # Additional settings used in AOSP builds
 PRODUCT_PROPERTY_OVERRIDES += \
+    ro.telephony.ril.v3=signalstrength \
     keyguard.no_require_sim=true \
     ro.com.android.dateformat=MM-dd-yyyy \
     ro.com.android.dataroaming=false \
