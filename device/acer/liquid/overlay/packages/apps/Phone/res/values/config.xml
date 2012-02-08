@@ -16,6 +16,9 @@
 
 <!-- Passion-specific phone app resources. -->
 <resources>
+<add-resource type="bool" name="allow_incoming_call_touch_ui">true</add-resource>
+ <add-resource type="bool" name="allow_in_call_touch_ui">true</add-resource>
+ <add-resource type="bool" name="allow_back_key_to_reject_incoming_call">true</add-resource>
 
     <!-- Enable the onscreen touch UI for all states of the in-call UI. -->
     <bool name="allow_incoming_call_touch_ui">true</bool>

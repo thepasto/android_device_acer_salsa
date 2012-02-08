@@ -10,31 +10,37 @@
 
 # Packages to include
 PRODUCT_PACKAGES += \
+        com.android.future.usb.accessory \
 	lights.salsa \
 	gps.salsa \
-	libcamera \
+        libcamera \
 	rzscontrol \
 	dexpreopt \
-	libstagefrighthw \
-	libOmxCore \
-	libmm-omxcore
-#libOmxCore \
-#libOmxVdec \
-#libOmxVidEnc
+
+# OMX
+PRODUCT_PACKAGES += \
+        libstagefrighthw \
+        libOmxCore \
+        libmm-omxcore \
+        libOmxVdec \
+        libOmxVidEnc
 
 # GPU
 PRODUCT_PACKAGES += \
-    copybit.qsd8k \
-    gralloc.qsd8k \
-    hwcomposer.default \
-    #libgenlock \
-    #libmemalloc \
-    #libtilerenderer
+        gralloc.qsd8k \
+        copybit.qsd8k \
+        camera.qsd8k \
+        hwcomposer.qsd8k \
+        libQcomUI \
+        libtilerenderer \
+        liboverlay \
+        librs_jni
 
 #Audio
 PRODUCT_PACKAGES += \
-    audio_policy.salsa \
-    audio.primary.salsa
+        audio.a2dp.default \
+        audio_policy.salsa \
+        audio.primary.salsa
 
 # proprietary side of the device
 $(call inherit-product-if-exists, vendor/acer/liquid/liquid-vendor.mk)
@@ -55,13 +61,6 @@ $(call inherit-product, device/common/gps/gps_eu_supl.mk)
 
 # Enabling Ring Tones
 include frameworks/base/data/sounds/OriginalAudio.mk
-
-# Liquid uses high-density artwork where available
-PRODUCT_LOCALES += ru
-
-# Liquid uses high-density artwork where available
-PRODUCT_AAPT_CONFIG := normal hdpi
-PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 # Pick up overlay for features that depend on non-open-source files
 DEVICE_PACKAGE_OVERLAYS := device/acer/liquid/overlay
@@ -90,7 +89,7 @@ $(call inherit-product-if-exists, device/acer/liquid/LiquidProprietary.mk)
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 # Additional settings used in AOSP builds
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.telephony.ril.v3=signalstrength \
+    ro.com.google.locationfeatures=1 \
     keyguard.no_require_sim=true \
     ro.com.android.dateformat=MM-dd-yyyy \
     ro.com.android.dataroaming=false \
@@ -105,9 +104,17 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.setupwizard.enable_bypass=1 \
     dalvik.vm.lockprof.threshold=500 \
     dalvik.vm.dexopt-flags=m=y \
+    dalvik.vm.execution-mode=int:jit \
+    dalvik.vm.checkjni=false \
     debug.sf.hw=1 \
+    ro.compcache.default=0 \
     ro.media.dec.aud.wma.enabled=1 \
-    ro.media.dec.vid.wmv.enabled=1
+    ro.media.dec.vid.wmv.enabled=1 \
+    hwui.render_dirty_regions=false \
+    hwui.disable_vsync=true \
+    BUILD_UTC_DATE=0 \
+    persist.ro.ril.sms_sync_sending=1 \
+    ro.camera.hd_shrink_vf_enabled=1
 
 # Acer specific proximity sensor calibration
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -122,7 +129,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Speed up scrolling
 PRODUCT_PROPERTY_OVERRIDES += \
-    windowsmgr.max_events_per_sec=60
+    windowsmgr.max_events_per_sec=260
 
 # Default network type.
 # 0 => WCDMA preferred, 3 => GSM/AUTO (PRL) preferred
@@ -132,7 +139,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # WiFi configuration
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=eth0 \
-    wifi.supplicant_scan_interval=30
+    wifi.supplicant_scan_interval=180
 
 # The OpenGL ES API level that is natively supported by this device.
 # This is a 16.16 fixed point number
@@ -141,11 +148,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # This is a high density device with more memory, so larger vm heaps for it.
 PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapsize=32m
+    dalvik.vm.heapsize=48m
 
 # Overrides
 PRODUCT_BRAND := acer
 PRODUCT_NAME := cm_liquid
 PRODUCT_DEVICE := liquid
-PRODUCT_MODEL := a100
+PRODUCT_MODEL := A1
 PRODUCT_MANUFACTURER := Acer
