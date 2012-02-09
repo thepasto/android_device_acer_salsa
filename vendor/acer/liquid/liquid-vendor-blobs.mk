@@ -86,5 +86,7 @@ PRODUCT_COPY_FILES += \
     vendor/acer/liquid/proprietary/sensorstatutil_yamaha:system/bin/sensorstatutil_yamaha \
     vendor/acer/liquid/proprietary/libms3c_yamaha.so:system/lib/libms3c_yamaha.so \
     vendor/acer/liquid/proprietary/libsensor_yamaha.so:system/lib/libsensor_yamaha.so \
-    vendor/acer/liquid/proprietary/sensors.salsa.so:system/lib/hw/sensors.salsa.so
+    vendor/acer/liquid/proprietary/sensors.salsa.so:system/lib/hw/sensors.salsa.so \
+    vendor/acer/liquid/proprietary/libsc-a2xx.so:system/lib/libsc-a2xx.so \
+    vendor/acer/liquid/proprietary/eglsubAndroid.so:system/lib/egl/eglsubAndroid.so
 
