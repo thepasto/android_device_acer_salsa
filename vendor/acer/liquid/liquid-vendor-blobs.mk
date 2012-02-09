@@ -79,5 +79,11 @@ PRODUCT_COPY_FILES += \
     vendor/acer/liquid/proprietary/libloc.so:system/lib/libloc.so \
     vendor/acer/liquid/proprietary/libloc.so:obj/lib/libloc.so \
     vendor/acer/liquid/proprietary/libloc-rpc.so:system/lib/libloc-rpc.so \
-    vendor/acer/liquid/proprietary/libcommondefs.so:system/lib/libcommondefs.so
+    vendor/acer/liquid/proprietary/libcommondefs.so:system/lib/libcommondefs.so \
+    vendor/acer/liquid/proprietary/sensorcalibutil_yamaha:system/bin/sensorcalibutil_yamaha \
+    vendor/acer/liquid/proprietary/sensorserver_yamaha:system/bin/sensorserver_yamaha \
+    vendor/acer/liquid/proprietary/sensorstatutil_yamaha:system/bin/sensorstatutil_yamaha \
+    vendor/acer/liquid/proprietary/libms3c_yamaha.so:system/lib/libms3c_yamaha.so \
+    vendor/acer/liquid/proprietary/libsensor_yamaha.so:system/lib/libsensor_yamaha.so \
+    vendor/acer/liquid/proprietary/sensors.salsa.so:system/lib/hw/sensors.salsa.so
 
