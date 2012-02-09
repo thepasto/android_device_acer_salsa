@@ -24,9 +24,10 @@ PRODUCT_COPY_FILES += \
     vendor/acer/liquid/proprietary/yamato_pfp.fw:system/etc/firmware/yamato_pfp.fw \
     vendor/acer/liquid/proprietary/yamato_pm4.fw:system/etc/firmware/yamato_pm4.fw \
     vendor/acer/liquid/proprietary/BCM4325.hcd:system/etc/firmware/BCM4325.hcd \
-    vendor/acer/liquid/proprietary/BCM4325.bin:system/etc/firmware/BCM4325.bin \
-    vendor/acer/liquid/proprietary/BCM4325_apsta.bin:system/etc/firmware/BCM4325_apsta.bin \
-    vendor/acer/liquid/proprietary/BCM4325Fac.bin:system/etc/firmware/BCM4325Fac.bin \
+    vendor/acer/liquid/proprietary/BCM4325.bin:system/etc/wifi/BCM4325.bin \
+    vendor/acer/liquid/proprietary/BCM4325_apsta.bin:system/etc/wifi/BCM4325_apsta.bin \
+    vendor/acer/liquid/proprietary/BCM4325Fac.bin:system/etc/wifi/BCM4325Fac.bin \
+    vendor/acer/liquid/proprietary/nvram.txt:system/etc/wifi/nvram.txt \
     vendor/acer/liquid/proprietary/qmuxd:system/bin/qmuxd \
     vendor/acer/liquid/proprietary/brcm_patchram_plus:system/bin/brcm_patchram_plus \
     vendor/acer/liquid/proprietary/libril-acer-1.so:system/lib/libril-acer-1.so \
