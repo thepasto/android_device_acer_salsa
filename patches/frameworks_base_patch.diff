@@ -1,0 +1,25 @@
+diff --git a/frameworks/base/cmds/servicemanager/service_manager.c b/frameworks/base/cmds/servicemanager/service_manager.c
+index 5c9a8b3..b23c1d1 100644
+--- a/frameworks/base/cmds/servicemanager/service_manager.c
++++ b/frameworks/base/cmds/servicemanager/service_manager.c
+@@ -30,6 +30,7 @@ static struct {
+ #ifdef LVMX
+     { AID_MEDIA, "com.lifevibes.mx.ipc" },
+ #endif
++    { AID_COMPASS, "yamaha.hardware.sensors" },
+     { AID_MEDIA, "media.audio_flinger" },
+     { AID_MEDIA, "media.player" },
+     { AID_MEDIA, "media.camera" },
+diff --git a/frameworks/base/services/java/com/android/server/PowerManagerService.java b/frameworks/base/services/java/com/android/server/PowerManagerService.java
+index 87597fc..783c445 100644
+--- a/frameworks/base/services/java/com/android/server/PowerManagerService.java
++++ b/frameworks/base/services/java/com/android/server/PowerManagerService.java
+@@ -108,7 +108,7 @@ public class PowerManagerService extends IPowerManager.Stub
+     private static final int LIGHT_SENSOR_RATE = 1000000;
+ 
+     // For debouncing the proximity sensor in milliseconds
+-    private static final int PROXIMITY_SENSOR_DELAY = 1000;
++    private static final int PROXIMITY_SENSOR_DELAY = 100;
+ 
+     // trigger proximity if distance is less than 5 cm
+     private static final float PROXIMITY_THRESHOLD = 5.0f;
