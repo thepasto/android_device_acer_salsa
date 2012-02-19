@@ -52,31 +52,6 @@ PRODUCT_COPY_FILES += \
     vendor/acer/liquid/proprietary/liboemcamera.so:obj/lib/liboemcamera.so \
     vendor/acer/liquid/proprietary/libmmjpeg.so:system/lib/libmmjpeg.so \
     vendor/acer/liquid/proprietary/libmmipl.so:system/lib/libmmipl.so \
-    vendor/acer/liquid/proprietary/libOmxEvrcEnc.so:/system/lib/libOmxEvrcEnc.so \
-    vendor/acer/liquid/proprietary/libOmxAacDec.so:/system/lib/libOmxAacDec.so \
-    vendor/acer/liquid/proprietary/libOmxWmvDec.so:/system/lib/libOmxWmvDec.so \
-    vendor/acer/liquid/proprietary/libOmxQcelpDec.so:/system/lib/libOmxQcelpDec.so \
-    vendor/acer/liquid/proprietary/libOmxAmrEnc.so:/system/lib/libOmxAmrEnc.so \
-    vendor/acer/liquid/proprietary/libOmxAdpcmDec.so:/system/lib/libOmxAdpcmDec.so \
-    vendor/acer/liquid/proprietary/libOmxEvrcDec.so:/system/lib/libOmxEvrcDec.so \
-    vendor/acer/liquid/proprietary/libOmxH264Dec.so:/system/lib/libOmxH264Dec.so \
-    vendor/acer/liquid/proprietary/libOmxAmrDec.so:/system/lib/libOmxAmrDec.so \
-    vendor/acer/liquid/proprietary/libOmxAmrwbDec.so:/system/lib/libOmxAmrwbDec.so \
-    vendor/acer/liquid/proprietary/libOmxWmaDec.so:/system/lib/libOmxWmaDec.so \
-    vendor/acer/liquid/proprietary/libOmxQcelp13Enc.so:/system/lib/libOmxQcelp13Enc.so \
-    vendor/acer/liquid/proprietary/libOmxMp3Dec.so:/system/lib/libOmxMp3Dec.so \
-    vendor/acer/liquid/proprietary/libOmxMpeg4Dec.so:/system/lib/libOmxMpeg4Dec.so \
-    vendor/acer/liquid/proprietary/libOmxVidEnc.so:/system/lib/libOmxVidEnc.so \
-    vendor/acer/liquid/proprietary/libOmxAmrRtpDec.so:/system/lib/libOmxAmrRtpDec.so \
-    vendor/acer/liquid/proprietary/libOmxAacEnc.so:/system/lib/libOmxAacEnc.so \
-    vendor/acer/liquid/proprietary/libmm-adspsvc.so:/system/lib/libmm-adspsvc.so \
-    vendor/acer/liquid/proprietary/libomx_aacdec_sharedlibrary.so:system/lib/libomx_aacdec_sharedlibrary.so \
-    vendor/acer/liquid/proprietary/libomx_amrdec_sharedlibrary.so:system/lib/libomx_amrdec_sharedlibrary.so \
-    vendor/acer/liquid/proprietary/libomx_amrenc_sharedlibrary.so:system/lib/libomx_amrenc_sharedlibrary.so \
-    vendor/acer/liquid/proprietary/libomx_avcdec_sharedlibrary.so:system/lib/libomx_avcdec_sharedlibrary.so \
-    vendor/acer/liquid/proprietary/libomx_m4vdec_sharedlibrary.so:system/lib/libomx_m4vdec_sharedlibrary.so \
-    vendor/acer/liquid/proprietary/libomx_mp3dec_sharedlibrary.so:system/lib/libomx_mp3dec_sharedlibrary.so \
-    vendor/acer/liquid/proprietary/libomx_sharedlibrary.so:system/lib/libomx_sharedlibrary.so \
     vendor/acer/liquid/proprietary/libloc.so:system/lib/libloc.so \
     vendor/acer/liquid/proprietary/libloc.so:obj/lib/libloc.so \
     vendor/acer/liquid/proprietary/libloc-rpc.so:system/lib/libloc-rpc.so \

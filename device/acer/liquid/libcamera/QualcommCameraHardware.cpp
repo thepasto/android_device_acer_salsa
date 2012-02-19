@@ -796,7 +796,7 @@ void QualcommCameraHardware::storeTargetType(void) {
             break;
         }
     }
-    mCurrentTarget = TARGET_MSM7625;
+    mCurrentTarget = TARGET_QSD8250;
     LOGV(" Storing the current target type as %d ", mCurrentTarget );
     return;
 }

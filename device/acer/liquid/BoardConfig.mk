@@ -25,7 +25,7 @@ TARGET_SPECIFIC_HEADER_PATH := device/acer/liquid/include
  
 TARGET_BOOTLOADER_BOARD_NAME := salsa
 TARGET_NO_BOOTLOADER := true
-TARGET_NO_KERNEL := true
+#TARGET_NO_KERNEL := true
 TARGET_NO_RADIOIMAGE := true
  
 # QSD8250
@@ -66,7 +66,9 @@ TARGET_HAVE_BYPASS := false
 TARGET_USES_GENLOCK := true
 TARGET_GRALLOC_USES_ASHMEM := true
 TARGET_FORCE_CPU_UPLOAD := true
-COMMON_GLOBAL_CFLAGS += -DREFRESH_RATE=60
+COMMON_GLOBAL_CFLAGS += -DREFRESH_RATE=60 -DQCOM_HARDWARE
+
+BOARD_EGL_CFG := device/acer/liquid/proprietary/egl.cfg
  
 # to enable the GPS HAL
 BOARD_USES_QCOM_GPS := true
@@ -78,11 +80,23 @@ TARGET_PROVIDES_LIBAUDIO := true
  
 #sensors
 TARGET_USES_OLD_LIBSENSORS_HAL := true
- 
+
+#boot
+BOARD_KERNEL_CMDLINE := console=null
+BOARD_KERNEL_BASE := 0x20000000
+BOARD_KERNEL_PAGESIZE := 4096
+
+#mmc
+BOARD_SDCARD_INTERNAL_DEVICE := /dev/block/mmcblk0p1
+
+#recovery
+BOARD_HAS_NO_MISC_PARTITION := true
+BOARD_USES_RECOVERY_CHARGEMODE := false
+BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/acer/liquid/recovery/recovery_keys.c
+TARGET_RECOVERY_PRE_COMMAND := "touch /cache/recovery/boot;sync;"
+
 #BOARD_USE_USB_MASS_STORAGE_SWITCH := true
 #TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
 #BOARD_UMS_LUNFILE := /sys/devices/platform/usb_mass_storage/lun0
- 
-BOARD_CUSTOM_USB_CONTROLLER := ../../device/acer/liquid/UsbController.cpp
- 
-BOARD_EGL_CFG := device/acer/liquid/proprietary/egl.cfg
+
+#BOARD_CUSTOM_USB_CONTROLLER := ../../device/acer/liquid/UsbController.cpp

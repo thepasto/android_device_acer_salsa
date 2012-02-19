@@ -8,6 +8,10 @@
 #PRODUCT_COPY_FILES := \
 #    device/acer/liquid/init.salsa.rc:root/init.salsa.rc
 
+TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel
+PRODUCT_COPY_FILES += \
+    $(TARGET_PREBUILT_KERNEL):kernel
+
 # Packages to include
 PRODUCT_PACKAGES += \
         com.android.future.usb.accessory \
@@ -148,7 +152,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # This is a high density device with more memory, so larger vm heaps for it.
 PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapsize=48m
+    dalvik.vm.heapsize=48m \
+    dalvik.vm.dexopt-data-only=1
 
 # Overrides
 PRODUCT_BRAND := acer

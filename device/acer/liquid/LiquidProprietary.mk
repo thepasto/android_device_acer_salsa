@@ -26,5 +26,13 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/acer/liquid/proprietary/a1-keypad.kcm:system/usr/keychars/a1-keypad.kcm \
     device/acer/liquid/proprietary/a1-keypad.kl:system/usr/keylayout/a1-keypad.kl \
+    device/acer/liquid/proprietary/avr.kl:system/usr/keylayout/avr.kl \
     device/acer/liquid/proprietary/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl \
     device/acer/liquid/proprietary/auo-touch.idc:system/usr/idc/auo-touch.idc
+
+## (3) Ramdisk 
+PRODUCT_COPY_FILES += \
+    device/acer/liquid/proprietary/init.salsa.rc:root/init.salsa.rc \
+    device/acer/liquid/proprietary/init.salsa.usb.rc:root/init.salsa.usb.rc \
+    device/acer/liquid/proprietary/ueventd.salsa.rc:root/ueventd.salsa.rc \
+    device/acer/liquid/proprietary/initlogo.rle:root/initlogo.rle
