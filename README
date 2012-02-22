@@ -28,8 +28,4 @@ You can now start building :)
 
 //commands (from <cyanogenrootfolder>)
 
-source build/envsetup.sh
-
-breakfast liquid
-
-mka -jx (2*cores)
+source build/envsetup.sh && brunch liquid
