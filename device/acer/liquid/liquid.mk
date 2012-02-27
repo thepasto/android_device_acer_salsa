@@ -49,6 +49,8 @@ PRODUCT_PACKAGES += \
 # proprietary side of the device
 $(call inherit-product-if-exists, vendor/acer/liquid/liquid-vendor.mk)
 
+$(call inherit-product, frameworks/base/build/phone-hdpi-512-dalvik-heap.mk)
+
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
@@ -99,10 +101,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.dataroaming=false \
     ro.sf.lcd_density=240 \
     rild.libpath=/system/lib/libril-acer-1.so \
-    rild.libargs=-d /dev/smd0 \
-    persist.radio.skippable.mcclist=466,505 \
-    persist.cust.tel.eons=1 \
-    persist.ril.ecclist=000,08,110,112,118,119,911,999 \
+    rild.libargs=-d/dev/smd0 \
     ro.ril.hsxpa=1 \
     ro.ril.gprsclass=10 \
     ro.setupwizard.enable_bypass=1 \
@@ -117,8 +116,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     hwui.render_dirty_regions=false \
     hwui.disable_vsync=true \
     BUILD_UTC_DATE=0 \
-    persist.ro.ril.sms_sync_sending=1 \
-    ro.camera.hd_shrink_vf_enabled=1
+    persist.ro.ril.sms_sync_sending=1
 
 # Acer specific proximity sensor calibration
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -152,7 +150,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # This is a high density device with more memory, so larger vm heaps for it.
 PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapsize=48m \
     dalvik.vm.dexopt-data-only=1
 
 # Overrides

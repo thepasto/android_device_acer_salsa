@@ -21,7 +21,7 @@ PRIVATE_BUILD_DESC="yakju-user 4.0.1 ITL41F 228551 release-keys"
 
 # Release name and versioning
 PRODUCT_RELEASE_NAME := A1
-PRODUCT_VERSION_DEVICE_SPECIFIC := -after_silence-$(shell date +%m%d%Y)
+PRODUCT_VERSION_DEVICE_SPECIFIC := -thepasto-$(shell date +%m%d%Y)
 
 PRODUCT_PACKAGES += \
     Camera

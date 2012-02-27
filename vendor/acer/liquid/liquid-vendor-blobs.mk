@@ -50,6 +50,8 @@ PRODUCT_COPY_FILES += \
     vendor/acer/liquid/proprietary/libauth.so:system/lib/libauth.so \
     vendor/acer/liquid/proprietary/liboemcamera.so:system/lib/liboemcamera.so \
     vendor/acer/liquid/proprietary/liboemcamera.so:obj/lib/liboemcamera.so \
+    vendor/acer/liquid/proprietary/libcamera.so:system/lib/libcamera.so \
+    vendor/acer/liquid/proprietary/libcamera.so:obj/lib/libcamera.so \
     vendor/acer/liquid/proprietary/libmmjpeg.so:system/lib/libmmjpeg.so \
     vendor/acer/liquid/proprietary/libmmipl.so:system/lib/libmmipl.so \
     vendor/acer/liquid/proprietary/libloc.so:system/lib/libloc.so \
