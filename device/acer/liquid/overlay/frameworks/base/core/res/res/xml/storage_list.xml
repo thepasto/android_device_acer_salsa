@@ -37,6 +37,6 @@
     <storage android:mountPoint="/mnt/sdcard"
     		 android:storageDescription="@string/storage_usb"
     		 android:primary="true"
-    		 android:allowMassStorage="true"
+    		 android:allowMassStorage="false"
     		 android:removable="true" />
 </StorageList>

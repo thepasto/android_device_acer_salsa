@@ -65,8 +65,12 @@ class_start default
     mkdir /dev/bus 0771 system system
     mkdir /dev/bus/usb 0771 system system
 
-    chmod 0660 /sys/devices/platform/msm_hsusb/gadget/lun1/file
-    chown usb usb /sys/devices/platform/msm_hsusb/gadget/lun1/file
+ #   chmod 0660 /sys/devices/platform/msm_hsusb/gadget/lun1/file
+ #   chown usb usb /sys/devices/platform/msm_hsusb/gadget/lun1/file
+
+write /sys/class/android_usb/android0/enable 0
+restart adbd
+write /sys/class/android_usb/android0/enable 1
 
 # Adjust socket buffer to enlarge TCP receive window for high bandwidth
     write /proc/sys/net/ipv4/tcp_adv_win_scale  1
