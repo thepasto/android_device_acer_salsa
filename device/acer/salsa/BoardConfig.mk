@@ -21,11 +21,10 @@ USE_CAMERA_STUB := false
 #######
  
 # Call headers from msm-3.0: needed to build libs in hardware/qcom/display
-TARGET_SPECIFIC_HEADER_PATH := device/acer/liquid/include
+TARGET_SPECIFIC_HEADER_PATH := device/acer/salsa/include
  
 TARGET_BOOTLOADER_BOARD_NAME := salsa
 TARGET_NO_BOOTLOADER := true
-#TARGET_NO_KERNEL := true
 TARGET_NO_RADIOIMAGE := true
  
 # QSD8250
@@ -66,12 +65,12 @@ TARGET_USE_OVERLAY      := false
 TARGET_HAVE_BYPASS      := false
 TARGET_USES_C2D_COMPOSITION := false
 TARGET_USES_GENLOCK := true
-#TARGET_GRALLOC_USES_ASHMEM := true
+TARGET_GRALLOC_USES_ASHMEM := true
 TARGET_FORCE_CPU_UPLOAD := true
 COMMON_GLOBAL_CFLAGS += -DMISSING_GRALLOC_BUFFERS -DREFRESH_RATE=60 -DQCOM_HARDWARE
 
 
-BOARD_EGL_CFG := device/acer/liquid/proprietary/egl.cfg
+BOARD_EGL_CFG := device/acer/salsa/proprietary/egl.cfg
  
 # to enable the GPS HAL
 BOARD_USES_QCOM_GPS := true
@@ -89,6 +88,13 @@ BOARD_KERNEL_CMDLINE := console=null
 BOARD_KERNEL_BASE := 0x20000000
 BOARD_KERNEL_PAGESIZE := 4096
 
+#fs
+BOARD_BOOTIMAGE_PARTITION_SIZE     := 0x00500000
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00500000
+BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 0x0c800000
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x0c800000
+BOARD_FLASH_BLOCK_SIZE := 4096
+
 #mmc
 BOARD_SDCARD_INTERNAL_DEVICE := /dev/block/mmcblk0p1
 
@@ -97,7 +103,7 @@ BOARD_SDCARD_INTERNAL_DEVICE := /dev/block/mmcblk0p1
 #recovery
 BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_USES_RECOVERY_CHARGEMODE := false
-BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/acer/liquid/recovery/recovery_keys.c
+BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/acer/salsa/recovery/recovery_keys.c
 TARGET_RECOVERY_PRE_COMMAND := "touch /cache/recovery/boot;sync;"
 
 #BOARD_USE_USB_MASS_STORAGE_SWITCH := true

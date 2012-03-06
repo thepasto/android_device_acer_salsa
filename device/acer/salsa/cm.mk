@@ -1,5 +1,5 @@
 # Inherit AOSP device configuration for passion.
-$(call inherit-product, device/acer/liquid/liquid.mk)
+$(call inherit-product, device/acer/salsa/device_salsa.mk)
 
 # Inherit some common cyanogenmod stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
@@ -11,8 +11,8 @@ $(call inherit-product, vendor/cm/config/gsm.mk)
 # Setup device specific product configuration.
 #
 PRODUCT_BRAND := acer
-PRODUCT_NAME := cm_liquid
-PRODUCT_DEVICE := liquid
+PRODUCT_NAME := cm_salsa
+PRODUCT_DEVICE := salsa
 PRODUCT_MODEL := A1
 PRODUCT_MANUFACTURER := Acer
 PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=liquid BUILD_ID=ITL41F \

@@ -47,7 +47,7 @@ PRODUCT_PACKAGES += \
         audio.primary.salsa
 
 # proprietary side of the device
-$(call inherit-product-if-exists, vendor/acer/liquid/liquid-vendor.mk)
+$(call inherit-product-if-exists, vendor/acer/salsa/liquid-vendor.mk)
 
 $(call inherit-product, frameworks/base/build/phone-hdpi-512-dalvik-heap.mk)
 
@@ -69,7 +69,7 @@ $(call inherit-product, device/common/gps/gps_eu_supl.mk)
 include frameworks/base/data/sounds/OriginalAudio.mk
 
 # Pick up overlay for features that depend on non-open-source files
-DEVICE_PACKAGE_OVERLAYS := device/acer/liquid/overlay
+DEVICE_PACKAGE_OVERLAYS := device/acer/salsa/overlay
 
 # Publish that we support the live wallpaper feature.
 PRODUCT_COPY_FILES += \
@@ -86,9 +86,9 @@ frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handh
     frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
 
 
-$(call inherit-product-if-exists, device/acer/liquid/KernelModules.mk)
+$(call inherit-product-if-exists, device/acer/salsa/KernelModules.mk)
 
-$(call inherit-product-if-exists, device/acer/liquid/LiquidProprietary.mk)
+$(call inherit-product-if-exists, device/acer/salsa/SalsaProprietary.mk)
 
 
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
@@ -153,7 +153,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Overrides
 PRODUCT_BRAND := acer
-PRODUCT_NAME := cm_liquid
-PRODUCT_DEVICE := liquid
+PRODUCT_NAME := cm_salsa
+PRODUCT_DEVICE := salsa
 PRODUCT_MODEL := A1
 PRODUCT_MANUFACTURER := Acer
