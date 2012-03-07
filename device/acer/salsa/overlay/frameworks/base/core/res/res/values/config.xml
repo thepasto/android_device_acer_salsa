@@ -95,7 +95,7 @@
     <integer name="config_carDockKeepsScreenOn">1</integer>
 
     <!-- Default color for notification LED is white (new color is cyan) -->
-    <color name="config_defaultNotificationColor">#0099FF</color>
+    <color name="config_defaultNotificationColor">#ffffffff</color>
 
     <!-- Default blink frequency for notification LED is 9 seconds. -->
     <integer name="config_defaultNotificationLedOff">6000</integer>
