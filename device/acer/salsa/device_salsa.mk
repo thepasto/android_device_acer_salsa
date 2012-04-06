@@ -5,8 +5,6 @@
 #     Created by Koudelka and xian1243                                      #
 #                                                                           #
 #############################################################################
-#PRODUCT_COPY_FILES := \
-#    device/acer/liquid/init.salsa.rc:root/init.salsa.rc
 
 TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel
 PRODUCT_COPY_FILES += \
@@ -17,9 +15,7 @@ PRODUCT_PACKAGES += \
         com.android.future.usb.accessory \
 	lights.salsa \
 	gps.salsa \
-        libcamera \
-	rzscontrol \
-	dexpreopt \
+        libcamera
 
 # OMX
 PRODUCT_PACKAGES += \
@@ -46,8 +42,22 @@ PRODUCT_PACKAGES += \
         audio_policy.salsa \
         audio.primary.salsa
 
+# e2fsprogs
+PRODUCT_PACKAGES += \
+    libext2fs \
+    libext2_uuid \
+    libext2_e2p \
+    libext2_blkid \
+    libext2_com_err \
+    libext2_profile \
+    resize2fs \
+    mke2fs \
+    tune2fs \
+    badblocks \
+    e2fsck
+
 # proprietary side of the device
-$(call inherit-product-if-exists, vendor/acer/salsa/liquid-vendor.mk)
+$(call inherit-product-if-exists, vendor/acer/salsa/salsa-vendor.mk)
 
 $(call inherit-product, frameworks/base/build/phone-hdpi-512-dalvik-heap.mk)
 
@@ -85,11 +95,7 @@ frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handh
     frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
 
-
 $(call inherit-product-if-exists, device/acer/salsa/KernelModules.mk)
-
-$(call inherit-product-if-exists, device/acer/salsa/SalsaProprietary.mk)
-
 
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 # Additional settings used in AOSP builds
@@ -105,17 +111,19 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.gprsclass=10 \
     ro.setupwizard.enable_bypass=1 \
     dalvik.vm.lockprof.threshold=500 \
-    dalvik.vm.dexopt-flags=m=y \
+    dalvik.vm.dexopt-flags=v=n,o=v,m=y \
     dalvik.vm.execution-mode=int:jit \
     dalvik.vm.checkjni=false \
     debug.sf.hw=1 \
-    ro.compcache.default=0 \
+    ro.zram.default=0 \
     ro.media.dec.aud.wma.enabled=1 \
     ro.media.dec.vid.wmv.enabled=1 \
     hwui.render_dirty_regions=false \
     hwui.disable_vsync=true \
     BUILD_UTC_DATE=0 \
     persist.ro.ril.sms_sync_sending=1
+
+PRODUCT_PROPERTY_OVERRIDES += ro.vold.umsdirtyratio=20
 
 # Acer specific proximity sensor calibration
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -150,6 +158,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # This is a high density device with more memory, so larger vm heaps for it.
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dexopt-data-only=1
+
+# proprietary side of the device
+$(call inherit-product-if-exists, device/acer/salsa/SalsaProprietary.mk)
 
 # Overrides
 PRODUCT_BRAND := acer

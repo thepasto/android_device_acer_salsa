@@ -39,10 +39,10 @@ touch.touchSize.calibration = pressure
 # Not used
 # Tool Size
 #
-#touch.toolSize.calibration = linear
-#touch.toolSize.linearScale = 10
-#touch.toolSize.linearBias = 10
-#touch.toolSize.isSummed = 1
+touch.toolSize.calibration = linear
+touch.toolSize.linearScale = 10
+touch.toolSize.linearBias = 160
+touch.toolSize.isSummed = 1
 
 # Pressure
 # Driver reports signal strength as pressure.
@@ -60,7 +60,7 @@ touch.pressure.source = default
 touch.pressure.scale = 0.01
 
 # Size
-touch.size.calibration = normalized
+#touch.size.calibration = normalized
 
 # Orientation
 touch.orientation.calibration = none

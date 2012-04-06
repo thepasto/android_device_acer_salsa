@@ -30,9 +30,29 @@ PRODUCT_COPY_FILES += \
     device/acer/salsa/proprietary/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl \
     device/acer/salsa/proprietary/auo-touch.idc:system/usr/idc/auo-touch.idc
 
-## (3) Ramdisk 
+## (3) Ramdisk
 PRODUCT_COPY_FILES += \
     device/acer/salsa/proprietary/init.salsa.rc:root/init.salsa.rc \
     device/acer/salsa/proprietary/init.salsa.usb.rc:root/init.salsa.usb.rc \
     device/acer/salsa/proprietary/ueventd.salsa.rc:root/ueventd.salsa.rc \
     device/acer/salsa/proprietary/initlogo.rle:root/initlogo.rle
+
+## (4) Init scripts
+PRODUCT_COPY_FILES += \
+    device/acer/salsa/proprietary/01sysctl:system/etc/init.d/01sysctl \
+    device/acer/salsa/proprietary/03swaps:system/etc/init.d/03swaps \
+    device/acer/salsa/proprietary/05mountext:system/etc/init.d/05mountext \
+    device/acer/salsa/proprietary/10apps2sd-redux:system/etc/init.d/10apps2sd
+
+## (5) App2sd
+PRODUCT_COPY_FILES += \
+    device/acer/salsa/proprietary/profile:system/etc/profile \
+    device/acer/salsa/proprietary/a2sd:system/bin/a2sd \
+    device/acer/salsa/proprietary/fix_permissions:system/bin/fix_permissions \
+    device/acer/salsa/proprietary/zipalign:system/xbin/zipalign
+
+## (6) Compcache
+PRODUCT_COPY_FILES += \
+    device/acer/salsa/proprietary/compcache:system/bin/compcache \
+    device/acer/salsa/proprietary/handle_compcache:/system/bin/handle_compcache \
+    device/acer/salsa/proprietary/rzscontrol:/system/xbin/rzscontrol    

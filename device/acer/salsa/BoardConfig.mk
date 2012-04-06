@@ -105,9 +105,10 @@ BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_USES_RECOVERY_CHARGEMODE := false
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/acer/salsa/recovery/recovery_keys.c
 TARGET_RECOVERY_PRE_COMMAND := "touch /cache/recovery/boot;sync;"
+TARGET_RECOVERY_INITRC := device/acer/salsa/recovery.rc
 
 #BOARD_USE_USB_MASS_STORAGE_SWITCH := true
-#TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
-#BOARD_UMS_LUNFILE := /sys/devices/platform/usb_mass_storage/lun0
+#TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun0
+BOARD_UMS_LUNFILE := /sys/devices/platform/msm_hsusb/gadget/lun0/file
 
 #BOARD_CUSTOM_USB_CONTROLLER := ../../device/acer/liquid/UsbController.cpp
