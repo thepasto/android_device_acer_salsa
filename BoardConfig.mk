@@ -83,7 +83,8 @@ TARGET_PROVIDES_LIBAUDIO := true
 #sensors
 TARGET_USES_OLD_LIBSENSORS_HAL := true
 
-#boot
+#kernel
+TARGET_KERNEL_CONFIG := cyanogenmod_salsa_defconfig
 BOARD_KERNEL_CMDLINE := console=null
 BOARD_KERNEL_BASE := 0x20000000
 BOARD_KERNEL_PAGESIZE := 4096
@@ -97,8 +98,8 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 
 #mmc
 BOARD_SDCARD_INTERNAL_DEVICE := /dev/block/mmcblk0p1
-
-#TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun0/file
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun0
+BOARD_UMS_LUNFILE := /sys/devices/platform/msm_hsusb/gadget/lun0/file
 
 #recovery
 BOARD_HAS_NO_MISC_PARTITION := true
@@ -107,8 +108,3 @@ BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/acer/salsa/recovery/recovery_ke
 TARGET_RECOVERY_PRE_COMMAND := "touch /cache/recovery/boot;sync;"
 TARGET_RECOVERY_INITRC := device/acer/salsa/recovery.rc
 
-#BOARD_USE_USB_MASS_STORAGE_SWITCH := true
-#TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun0
-BOARD_UMS_LUNFILE := /sys/devices/platform/msm_hsusb/gadget/lun0/file
-
-#BOARD_CUSTOM_USB_CONTROLLER := ../../device/acer/liquid/UsbController.cpp

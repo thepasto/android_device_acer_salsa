@@ -6,9 +6,9 @@
 #                                                                           #
 #############################################################################
 
-TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel
-PRODUCT_COPY_FILES += \
-    $(TARGET_PREBUILT_KERNEL):kernel
+#TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel
+#PRODUCT_COPY_FILES += \
+#    $(TARGET_PREBUILT_KERNEL):kernel
 
 # Packages to include
 PRODUCT_PACKAGES += \
