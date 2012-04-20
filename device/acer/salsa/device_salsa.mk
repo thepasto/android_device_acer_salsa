@@ -76,7 +76,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/common/gps/gps_eu_supl.mk)
 
 # Enabling Ring Tones
-include frameworks/base/data/sounds/OriginalAudio.mk
+include frameworks/base/data/sounds/NewAudio.mk
 
 # Pick up overlay for features that depend on non-open-source files
 DEVICE_PACKAGE_OVERLAYS := device/acer/salsa/overlay
@@ -111,7 +111,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.gprsclass=10 \
     ro.setupwizard.enable_bypass=1 \
     dalvik.vm.lockprof.threshold=500 \
-    dalvik.vm.dexopt-flags=v=n,o=v,m=y \
+    dalvik.vm.dexopt-flags=m=y \
     dalvik.vm.execution-mode=int:jit \
     dalvik.vm.checkjni=false \
     debug.sf.hw=1 \

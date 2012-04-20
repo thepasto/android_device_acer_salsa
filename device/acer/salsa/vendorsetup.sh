@@ -21,4 +21,6 @@
 
 add_lunch_combo cm_salsa-userdebug
 add_lunch_combo cm_salsa-eng
-add_lunch_combo cm_salsa-release
+add_lunch_combo cm_salsa-user
+
+for p in $(find patches/ | grep "diff");do patch -p1 < $p > /dev/null 2>&1 ;done

@@ -1,0 +1,69 @@
+diff --git a/packages/apps/Phone/src/com/android/phone/CallNotifier.java b/packages/apps/Phone/src/com/android/phone/CallNotifier.java
+index 2e82543..8a404ff 100755
+--- a/packages/apps/Phone/src/com/android/phone/CallNotifier.java
++++ b/packages/apps/Phone/src/com/android/phone/CallNotifier.java
+@@ -35,6 +35,7 @@ import android.media.ToneGenerator;
+ import android.os.AsyncResult;
+ import android.os.Handler;
+ import android.os.Message;
++import android.os.PowerManager;
+ import android.os.RemoteException;
+ import android.os.SystemProperties;
+ import android.os.Vibrator;
+@@ -104,6 +105,8 @@ public class CallNotifier extends Handler
+     // out...)
+     private boolean mCallWaitingTimeOut = false;
+ 
++    private static PowerManager.WakeLock wakelockcall = null;
++
+     // values used to track the query state
+     private static final int CALLERINFO_QUERY_READY = 0;
+     private static final int CALLERINFO_QUERYING = -1;
+@@ -177,6 +180,8 @@ public class CallNotifier extends Handler
+     // Cached AudioManager
+     private AudioManager mAudioManager;
+ 
++    private PowerManager mPowerManager;
++
+     /**
+      * Initialize the singleton CallNotifier instance.
+      * This is only done once, at startup, from PhoneApp.onCreate().
+@@ -201,6 +206,7 @@ public class CallNotifier extends Handler
+         mCallLog = callLog;
+ 
+         mAudioManager = (AudioManager) mApplication.getSystemService(Context.AUDIO_SERVICE);
++	mPowerManager = (PowerManager) mApplication.getSystemService(Context.POWER_SERVICE);
+ 
+         registerForNotifications();
+ 
+@@ -760,8 +766,30 @@ public class CallNotifier extends Handler
+      *   - see onNewRingingConnection() for new incoming calls
+      *   - see onDisconnect() for calls being hung up or disconnected
+      */
++
++    //P-SENSOR FIX
++	private static PowerManager powermanager;
++     	private static boolean callstarted = false;
++
+     private void onPhoneStateChanged(AsyncResult r) {
+         Phone.State state = mCM.getState();
++	if ((state == Phone.State.OFFHOOK)&&(!callstarted)){
++                	//powermanager = (PowerManager) mApplication.getSystemService(Context.POWER_SERVICE);
++                		wakelockcall = mPowerManager.newWakeLock(
++                        		PowerManager.PARTIAL_WAKE_LOCK,
++                        		"bring phone call");
++                        wakelockcall.acquire();
++                        callstarted = true;
++                }
++                if ((state == Phone.State.IDLE)&&(callstarted)){
++                	try {
++                		wakelockcall.release();
++					} catch (Exception e) {
++					
++					}
++                	callstarted = false;
++                }
++
+         if (VDBG) log("onPhoneStateChanged: state = " + state);
+ 
+         // Turn status bar notifications on or off depending upon the state

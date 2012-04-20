@@ -37,7 +37,7 @@ case "$1" in
       rmmod $MODULE >/dev/null 2>&1
    ;;
    stats)
-     if [ $MODULE = ramzswap ]; then
+     if [ $MODULE = $isramzswap ]; then
          rzscontrol $DEV --stats
      else
          cd $SYSFS_PATH && for i in * ; do

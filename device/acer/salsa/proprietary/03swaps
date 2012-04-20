@@ -4,9 +4,9 @@
 #
 
 RAM=$(cat /proc/meminfo | grep MemTotal | awk '{print $2}')
+SDSWAP=$(fdisk -l /dev/block/mmcblk0 | grep 82 | awk '{print $1}' | tail -n1)
 
 if [ $RAM -lt "200000" ]; then
-	SDSWAP=$(fdisk -l /dev/block/mmcblk0 | grep 82 | awk '{print $1}' | tail -n1)
 
 	if [[ -e /data/swapfile ]]; then
 		SWAP=$(losetup -f)
@@ -17,11 +17,14 @@ if [ $RAM -lt "200000" ]; then
 
 	compcache stop
 	swapoff $SWAP >/dev/null 2>&1
-	handle_compcache $SWAP
+	handle_compcache $SWAP &
 
 	MSWAP=$(cat proc/swaps | grep partition)
 
 	if [ -z "$MSWAP" ] && [ -n "$SDSWAP" ]; then
 		swapon $SDSWAP
 	fi
+
+else 
+	handle_compcache &
 fi
