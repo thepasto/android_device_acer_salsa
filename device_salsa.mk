@@ -72,11 +72,8 @@ PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 # Check generic.mk/languages_full.mk to see what applications/languages are installed turns out all languages get included if I don't specify, but some seem to be missing the actuall translation.
 $(call inherit-product, build/target/product/languages_full.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 $(call inherit-product, device/common/gps/gps_eu_supl.mk)
-
-# Enabling Ring Tones
-include frameworks/base/data/sounds/NewAudio.mk
 
 # Pick up overlay for features that depend on non-open-source files
 DEVICE_PACKAGE_OVERLAYS := device/acer/salsa/overlay
@@ -94,8 +91,6 @@ frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handh
     frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
-
-#$(call inherit-product-if-exists, device/acer/salsa/KernelModules.mk)
 
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 # Additional settings used in AOSP builds
