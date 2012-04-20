@@ -95,7 +95,7 @@ frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handh
     frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
 
-$(call inherit-product-if-exists, device/acer/salsa/KernelModules.mk)
+#$(call inherit-product-if-exists, device/acer/salsa/KernelModules.mk)
 
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 # Additional settings used in AOSP builds
