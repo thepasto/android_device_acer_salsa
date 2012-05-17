@@ -209,6 +209,9 @@
          files if they are to be stored in DownloadManager's data dir,
          which typically is /data/data/com.android.providers.downloads/files -->
     <integer name="config_downloadDataDirSize">50</integer>
+    
+    <!-- Fix for Airplane mode in our case -->
+    <bool name="config_bluetooth_adapter_quick_switch">false</bool>
 
     <!-- Max number of downloads allowed to proceed concurrently -->
     <integer name="config_MaxConcurrentDownloadsAllowed">4</integer>
