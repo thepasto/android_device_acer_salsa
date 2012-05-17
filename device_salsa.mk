@@ -107,7 +107,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.gprsclass=10 \
     ro.setupwizard.enable_bypass=1 \
     dalvik.vm.lockprof.threshold=500 \
-    dalvik.vm.dexopt-flags=m=y \
+    dalvik.vm.verify-bytecode=false \
+    dalvik.vm.dexopt-flags=v=n,o=v \
     dalvik.vm.execution-mode=int:jit \
     dalvik.vm.checkjni=false \
     debug.sf.hw=1 \
