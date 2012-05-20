@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LOCAL_PATH := $(my-dir)
-subdir_makefiles := \
-	$(LOCAL_PATH)/liblights/Android.mk \
-	$(LOCAL_PATH)/libaudio/Android.mk
-include $(subdir_makefiles)
+LOCAL_PATH := $(call my-dir)
+
+ifeq ($(TARGET_DEVICE),salsa)
+    include $(call all-makefiles-under,$(LOCAL_PATH))
+endif

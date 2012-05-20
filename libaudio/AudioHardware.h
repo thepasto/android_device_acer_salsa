@@ -33,7 +33,7 @@ extern "C" {
 }
 
 
-namespace android_audio_legacy {
+namespace android {
 
 // ----------------------------------------------------------------------------
 // Kernel driver interface
@@ -254,8 +254,6 @@ private:
                 uint32_t    devices() { return mDevices; }
         virtual status_t    getRenderPosition(uint32_t *dspFrames);
         virtual status_t    openDriver();
-        virtual status_t    addAudioEffect(effect_handle_t effect) {return INVALID_OPERATION;}
-        virtual status_t    removeAudioEffect(effect_handle_t effect) {return INVALID_OPERATION;}
 
     private:
                 AudioHardware* mHardware;
@@ -300,8 +298,6 @@ private:
                 int         state() const { return mState; }
         static  status_t disableDualMicIfNeeded();
         bool isRecordingEnabled() { return mRecordingEnabled;}
-        virtual status_t    addAudioEffect(effect_handle_t effect) {return INVALID_OPERATION;}
-        virtual status_t    removeAudioEffect(effect_handle_t effect) {return INVALID_OPERATION;}
 
     private:
                 AudioHardware* mHardware;
@@ -326,7 +322,7 @@ private:
             uint32_t    mBluetoothIdTx;
             uint32_t    mBluetoothIdRx;
             AudioStreamOutMSM72xx*  mOutput;
-            android::SortedVector<AudioStreamInMSM72xx*>   mInputs;
+            SortedVector <AudioStreamInMSM72xx*>   mInputs;
 
             msm_bt_endpoint *mBTEndpoints;
             int mNumBTEndpoints;
@@ -336,7 +332,7 @@ private:
             int         mTtyMode;
 
      friend class AudioStreamInMSM72xx;
-            android::Mutex       mLock;
+            Mutex       mLock;
             uint32_t        mRoutes[AudioSystem::NUM_MODES];
 };
 
