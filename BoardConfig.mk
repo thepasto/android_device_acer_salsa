@@ -66,7 +66,8 @@ BOARD_CUSTOM_USB_CONTROLLER := ../../device/acer/salsa/UsbController.cpp
 BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_CUSTOM_RECOVERY_KEYMAPPING:= ../../device/acer/salsa/recovery/recovery_ui.c
 
-TARGET_PREBUILT_KERNEL := device/acer/salsa/kernel
+#TARGET_PREBUILT_KERNEL := device/acer/salsa/kernel
+TARGET_KERNEL_CONFIG := cyanogen_salsa_defconfig
 BOARD_KERNEL_CMDLINE := console=null
 BOARD_KERNEL_BASE := 0x20000000
 BOARD_KERNEL_PAGESIZE := 4096
