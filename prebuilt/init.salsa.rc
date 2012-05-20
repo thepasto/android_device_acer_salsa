@@ -1,0 +1,138 @@
+on boot
+# Bluetooth 
+    chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+    chown bluetooth bluetooth /proc/bluetooth/sleep/proto
+    chown system system /sys/module/sco/parameters/disable_esco
+    chmod 0660 /sys/module/bluetooth_power/parameters/power
+    chmod 0660 /sys/class/rfkill/rfkill0/state
+    chmod 0660 /proc/bluetooth/sleep/proto
+    chown bluetooth bluetooth /dev/ttyHS1
+    write /sys/class/rfkill/rfkill0/state 0
+    chmod 0666 /dev/ttyHS1
+    
+    chown system system /sys/bus/platform/devices/msm_sdcc.1/polling
+    chown system system /sys/bus/platform/devices/msm_sdcc.2/polling
+    chown system system /sys/bus/platform/devices/msm_sdcc.3/polling
+    chown system system /sys/bus/platform/devices/msm_sdcc.4/polling
+    chown system system /sys/devices/platform/msm_hsusb_periphera/composition
+    chown system system /sys/class/power_supply/battery/charging
+    chmod 0777 /data/data/SimpleTest.Fac
+    symlink /dev/msm_pcm /dev/msm_pcm_out
+    chown system audio /dev/msm_pcm
+    chmod 0660 /dev/msm_pcm
+
+# Sensors fix
+   # mkdir /data/system 0777 system system
+
+# performance tweaks for flash
+    write /sys/block/mtdblock3/bdi/read_ahead_kb 4
+    write /sys/block/mtdblock4/bdi/read_ahead_kb 4
+    write /sys/block/mtdblock5/bdi/read_ahead_kb 4
+
+# Increase readahead buffers on MMC devices
+    write /sys/block/mmcblk0/bdi/read_ahead_kb 4096
+
+# Wifi 
+    chown wifi wifi /sys/module/wifi_power/parameters/power
+    chmod 0660 /sys/module/wifi_power/parameters/power
+    # Broadcom stuff
+    chmod 0777 /data/misc/wifi
+    exec rmdir /data/misc/wifi/sockets
+    mkdir /data/misc/wifi/sockets 0777 wifi wifi
+    exec rm /data/misc/dhcp/dhcpcd-eth0.lease
+    exec rm /data/misc/dhcp/dhcpcd-eth0.pid
+    chown wifi wifi /data/misc/wifi/wpa_supplicant.conf
+    mkdir /data/misc/dhcp 0770 dhcp dhcp
+
+# Ril
+    mkdir /data/radio 0770 radio radio
+
+# Fast dormancy settings
+    setprop ro.ril.fast.dormancy.rule 1
+    setprop ro.ril.fd.scron.timeout 4
+    setprop ro.ril.fd.scroff.timeout 3
+
+# Adjust socket buffer to enlarge TCP receive window for high bandwidth
+    write /proc/sys/net/ipv4/tcp_adv_win_scale  1
+
+# Generate /data/system/ms3c_yamaha.cfg
+#    exec /system/bin/sensorcalibutil_yamaha
+#    chmod 0777 /data/system/ms3c_yamaha.cfg
+    
+on property:init.svc.hciattach=running
+    write /sys/devices/virtual/bluetooth/hci0/idle_timeout 7000
+    write /proc/bluetooth/sleep/proto 1
+
+#on property:ril.gcf="1"
+    setprop net.tcp.buffersize.gprs    4094,87380,110208,4096,16384,110208
+
+on property:init.svc.hciattach=stopped
+    write /proc/bluetooth/sleep/proto 0
+
+service hciattach /system/bin/brcm_patchram_plus --enable_hci --enable_lpm \
+    --baudrate 3500000 --patchram /etc/firmware/BCM4325.hcd /dev/ttyHS1
+    user bluetooth
+    group bluetooth net_bt_admin
+    disabled
+
+service dhcpcd_eth0 /system/bin/dhcpcd -ABKL -d eth0
+    class WLAN
+    #user system  #- this makes socket() calls fail with permission denied
+    group dhcp
+    disabled
+    oneshot
+
+service iprenew_eth0 /system/bin/dhcpcd -n
+    group dhcp
+    disabled
+    oneshot
+
+service autoip /system/bin/dhcpcd -B -d eth0
+    class WLAN
+    #user system  #- this makes socket() calls fail with permission denied
+    group dhcp
+    disabled
+    oneshot
+
+service wpa_supplicant /system/bin/wpa_supplicant -D wext -i eth0 -c /data/misc/wifi/wpa_supplicant.conf
+    class WLAN
+    socket wpa_eth0 dgram 0660 wifi wifi 
+    disabled
+    oneshot
+
+#on property:init.svc.wpa_supplicant=stopped
+#    stop dhcpcd_eth0
+
+service sensor-daemon /system/bin/sensorserver_yamaha
+    user compass
+    group system
+
+#service salsa-sh /system/bin/sh /init.salsa.sh
+#    user root
+#    oneshot
+
+service qmuxd /system/bin/qmuxd
+    user root
+    group root
+    oneshot
+
+#service mountbind /sbin/mountbind.sh
+#    user root
+#    group root
+#    oneshot
+
+#service ifcfg_new /system/bin/ifconfig eth0 up
+#    disabled
+#    oneshot
+
+#service dhcp-service /system/bin/netcfg eth0 dhcp
+#	oneshot
+
+#on property:dev.bootcomplete=1
+#	stop dhcp-service
+#	start dhcp-service
+	
+
+#service port-bridge /system/bin/port-bridge /dev/smd0 /dev/ttyGS0 &

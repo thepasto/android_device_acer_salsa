@@ -51,10 +51,10 @@ PRODUCT_COPY_FILES += \
     device/acer/salsa/media_profiles.xml:system/etc/media_profiles.xml \
     device/acer/salsa/sysctl.conf:system/etc/sysctl.conf \
     device/acer/salsa/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    device/acer/salsa/proprietary/init.salsa.rc:root/init.salsa.rc \
-    device/acer/salsa/proprietary/ueventd.salsa.rc:root/ueventd.salsa.rc \
+    device/acer/salsa/prebuilt/init.salsa.rc:root/init.salsa.rc \
+    device/acer/salsa/prebuilt/ueventd.salsa.rc:root/ueventd.salsa.rc \
     device/acer/salsa/recovery.fstab:root/recovery.fstab \
-    device/acer/salsa/proprietary/initlogo.rle:root/initlogo.rle
+    device/acer/salsa/prebuilt/initlogo.rle:root/initlogo.rle
 
 ## (2) Also get non-open-source GSM-specific aspects if available
 $(call inherit-product-if-exists, vendor/acer/salsa/salsa-vendor.mk)

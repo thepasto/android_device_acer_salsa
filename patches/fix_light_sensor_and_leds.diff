@@ -1,0 +1,132 @@
+diff --git a/frameworks/base/services/java/com/android/server/PowerManagerService.java b/frameworks/base/services/java/com/android/server/PowerManagerService.java
+index 85b6cfe..a929b26 100644
+--- a/frameworks/base/services/java/com/android/server/PowerManagerService.java
++++ b/frameworks/base/services/java/com/android/server/PowerManagerService.java
+@@ -16,6 +16,15 @@
+ 
+ package com.android.server;
+ 
++//led fix
++import android.database.Cursor;
++import android.provider.CallLog;
++import android.provider.CallLog.Calls;
++import java.io.File;
++import java.io.FileOutputStream;
++import java.io.BufferedReader;
++import java.io.FileReader;
++
+ import com.android.internal.app.IBatteryStats;
+ import com.android.internal.app.ShutdownThread;
+ import com.android.server.am.BatteryStatsService;
+@@ -90,6 +99,13 @@ class PowerManagerService extends IPowerManager.Stub
+ 
+     private static final boolean LOG_PARTIAL_WL = false;
+ 
++    //LED FIX
++    private String[] strFields = {
++           android.provider.CallLog.Calls.NEW,
++    };
++    private String strOrder = android.provider.CallLog.Calls.DATE + " DESC";                     
++    private Cursor mCallCursor;//LED FIX
++
+     // Indicates whether touch-down cycles should be logged as part of the
+     // LOG_POWER_SCREEN_STATE log events
+     private static final boolean LOG_TOUCH_DOWNS = true;
+@@ -111,7 +127,7 @@ class PowerManagerService extends IPowerManager.Stub
+     private static final int LIGHT_SENSOR_DELAY = 2000;
+ 
+     // For debouncing the proximity sensor.
+-    private static final int PROXIMITY_SENSOR_DELAY = 1000;
++    private static final int PROXIMITY_SENSOR_DELAY = 200;
+ 
+     // trigger proximity if distance is less than 5 cm
+     private static final float PROXIMITY_THRESHOLD = 5.0f;
+@@ -1460,6 +1476,25 @@ class PowerManagerService extends IPowerManager.Stub
+                     if (mContext != null && ActivityManagerNative.isSystemReady()) {
+                         mContext.sendOrderedBroadcast(mScreenOnIntent, null,
+                                 mScreenOnBroadcastDone, mHandler, 0, null, null);
++
++//shutdown all leds
++try{
++FileOutputStream fos2 = new FileOutputStream("/sys/class/leds2/bottom");
++                byte[] bytes2 = new byte[1];
++                bytes2[0] = (byte)'0';
++                fos2.write(bytes2);
++                fos2.close();
++FileOutputStream fos3 = new FileOutputStream("/sys/class/leds2/call");
++                byte[] bytes3 = new byte[1];
++                bytes3[0] = (byte)'0';
++                fos3.write(bytes3);
++                fos3.close();
++FileOutputStream fos4 = new FileOutputStream("/sys/class/leds2/mail");
++                byte[] bytes4 = new byte[1];
++                bytes4[0] = (byte)'0';
++                fos4.write(bytes4);
++                fos4.close();
++} catch (Exception e) {}
+                     } else {
+                         synchronized (mLocks) {
+                             EventLog.writeEvent(EventLogTags.POWER_SCREEN_BROADCAST_STOP, 2,
+@@ -1481,6 +1516,37 @@ class PowerManagerService extends IPowerManager.Stub
+                     if (mContext != null && ActivityManagerNative.isSystemReady()) {
+                         mContext.sendOrderedBroadcast(mScreenOffIntent, null,
+                                 mScreenOffBroadcastDone, mHandler, 0, null, null);
++
++//fix call led
++try {
++mCallCursor = mContext.getContentResolver().query(android.provider.CallLog.Calls.CONTENT_URI,strFields,CallLog.Calls.TYPE + "=" + CallLog.Calls.MISSED_TYPE,null,strOrder);
++if(mCallCursor.moveToFirst()){
++boolean newcall = mCallCursor.getString(mCallCursor.getColumnIndex(Calls.NEW)).equals("1");
++FileOutputStream fos0 = new FileOutputStream("/sys/class/leds2/call");
++                byte[] bytes0 = new byte[1];
++                bytes0[0] = (byte)(newcall ? '1' : '0');
++                fos0.write(bytes0);
++                fos0.close();
++}
++} catch (Exception e) {}
++
++//enable bottom led notificaion
++try {
++if(Settings.System.getInt(mContext.getContentResolver(),"enable_bottom_led_notification", 0)==1){
++FileReader fr1 =  new FileReader(new File("/data/system/","mail_led"));
++BufferedReader br1 = new BufferedReader(fr1);
++            String result1 = br1.readLine();
++            br1.close();
++            fr1.close();
++FileOutputStream fos1 = new FileOutputStream("/sys/class/leds2/bottom");
++                byte[] bytes1 = new byte[1];
++		if(result1.equals("0")) bytes1[0] = (byte)'0';
++		if(result1.equals("1")) bytes1[0] = (byte)'1';
++                fos1.write(bytes1);
++                fos1.close();
++}
++} catch (Exception e) {}
++
+                     } else {
+                         synchronized (mLocks) {
+                             EventLog.writeEvent(EventLogTags.POWER_SCREEN_BROADCAST_STOP, 3,
+@@ -1497,7 +1563,7 @@ class PowerManagerService extends IPowerManager.Stub
+             }
+         }
+     };
+-
++  
+     long mScreenOnStart;
+     private BroadcastReceiver mScreenOnBroadcastDone = new BroadcastReceiver() {
+         public void onReceive(Context context, Intent intent) {
+@@ -3415,12 +3481,13 @@ class PowerManagerService extends IPowerManager.Stub
+                     if (mLightSensorValue == -1 ||
+                             milliseconds < mLastScreenOnTime + mLightSensorWarmupTime) {
+                         // process the value immediately if screen has just turned on
+-                        lightSensorChangedLocked(value);
++                        //lightSensorChangedLocked(value);
+                     } else {
+                         // delay processing to debounce the sensor
+                         mLightSensorPendingValue = value;
+-                        mHandler.postDelayed(mAutoBrightnessTask, LIGHT_SENSOR_DELAY);
++                        //mHandler.postDelayed(mAutoBrightnessTask, LIGHT_SENSOR_DELAY);
+                     }
++		lightSensorChangedLocked(value);
+                 } else {
+                     mLightSensorPendingValue = -1;
+                 }
