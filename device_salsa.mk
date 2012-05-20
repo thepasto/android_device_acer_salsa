@@ -56,6 +56,12 @@ PRODUCT_COPY_FILES += \
     device/acer/salsa/recovery.fstab:root/recovery.fstab \
     device/acer/salsa/prebuilt/initlogo.rle:root/initlogo.rle
 
+PRODUCT_COPY_FILES += \
+    device/acer/salsa/prebuilt/bcm4329.ko:system/lib/modules/bcm4329.ko \
+    device/acer/salsa/prebuilt/cifs.ko:system/lib/modules/cifs.ko \
+    device/acer/salsa/prebuilt/ramzswap.ko:system/lib/modules/ramzswap.ko \
+    device/acer/salsa/prebuilt/tun.ko:system/lib/modules/tun.ko
+
 ## (2) Also get non-open-source GSM-specific aspects if available
 $(call inherit-product-if-exists, vendor/acer/salsa/salsa-vendor.mk)
 
