@@ -85,7 +85,7 @@ TARGET_USES_OLD_LIBSENSORS_HAL := true
 
 #kernel
 TARGET_KERNEL_CONFIG := cyanogenmod_salsa_defconfig
-BOARD_KERNEL_CMDLINE := console=null
+BOARD_KERNEL_CMDLINE := console=null cgroup_disable=memory
 BOARD_KERNEL_BASE := 0x20000000
 BOARD_KERNEL_PAGESIZE := 4096
 
