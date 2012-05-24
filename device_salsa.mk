@@ -29,7 +29,6 @@ PRODUCT_PACKAGES += \
 # GPU
 PRODUCT_PACKAGES += \
         gralloc.qsd8k \
-        copybit.qsd8k \
         camera.qsd8k \
         hwcomposer.qsd8k \
         libQcomUI \
