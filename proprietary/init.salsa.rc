@@ -167,10 +167,4 @@ service qmuxd /system/bin/qmuxd
 #on property:dev.bootcomplete=1
 #	stop dhcp-service
 #	start dhcp-service
-	
-# Compcache - handle at boot - since our local.rc doesn't like to init
-service compcache /system/bin/handle_compcache
-    user root
-    group root
-    oneshot
 #service port-bridge /system/bin/port-bridge /dev/smd0 /dev/ttyGS0 &

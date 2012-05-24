@@ -1,3 +1,17 @@
+diff --git a/frameworks/base/services/java/com/android/server/PowerManagerService.java b/frameworks/base/services/java/com/android/server/PowerManagerService.java
+index aafe474..f8af35e 100644
+--- a/frameworks/base/services/java/com/android/server/PowerManagerService.java
++++ b/frameworks/base/services/java/com/android/server/PowerManagerService.java
+@@ -111,7 +111,7 @@ public class PowerManagerService extends IPowerManager.Stub
+     private static final int LIGHT_SENSOR_RATE = 1000000;
+ 
+     // For debouncing the proximity sensor in milliseconds
+-    private static final int PROXIMITY_SENSOR_DELAY = 1000;
++    private static final int PROXIMITY_SENSOR_DELAY = 100;
+ 
+     // trigger proximity if distance is less than 5 cm
+     private static final float PROXIMITY_THRESHOLD = 5.0f;
+
 diff --git a/packages/apps/Phone/src/com/android/phone/CallNotifier.java b/packages/apps/Phone/src/com/android/phone/CallNotifier.java
 index 2e82543..8a404ff 100755
 --- a/packages/apps/Phone/src/com/android/phone/CallNotifier.java
@@ -10,7 +24,7 @@ index 2e82543..8a404ff 100755
  import android.os.RemoteException;
  import android.os.SystemProperties;
  import android.os.Vibrator;
-@@ -104,6 +105,8 @@ public class CallNotifier extends Handler
+@@ -103,6 +104,8 @@ public class CallNotifier extends Handler
      // out...)
      private boolean mCallWaitingTimeOut = false;
  
@@ -19,7 +33,7 @@ index 2e82543..8a404ff 100755
      // values used to track the query state
      private static final int CALLERINFO_QUERY_READY = 0;
      private static final int CALLERINFO_QUERYING = -1;
-@@ -177,6 +180,8 @@ public class CallNotifier extends Handler
+@@ -176,6 +179,8 @@ public class CallNotifier extends Handler
      // Cached AudioManager
      private AudioManager mAudioManager;
  
@@ -28,7 +42,7 @@ index 2e82543..8a404ff 100755
      /**
       * Initialize the singleton CallNotifier instance.
       * This is only done once, at startup, from PhoneApp.onCreate().
-@@ -201,6 +206,7 @@ public class CallNotifier extends Handler
+@@ -200,6 +205,7 @@ public class CallNotifier extends Handler
          mCallLog = callLog;
  
          mAudioManager = (AudioManager) mApplication.getSystemService(Context.AUDIO_SERVICE);
@@ -36,7 +50,7 @@ index 2e82543..8a404ff 100755
  
          registerForNotifications();
  
-@@ -760,8 +766,30 @@ public class CallNotifier extends Handler
+@@ -762,8 +768,30 @@ public class CallNotifier extends Handler
       *   - see onNewRingingConnection() for new incoming calls
       *   - see onDisconnect() for calls being hung up or disconnected
       */

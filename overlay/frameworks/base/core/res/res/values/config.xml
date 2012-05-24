@@ -27,15 +27,6 @@
     <!-- disable menu hard key on Passion in non-pattern lockscreen -->
     <bool name="config_disableMenuKeyInLockScreen">true</bool>
 
-    <!-- Flag indicating whether the surface flinger has limited
-         alpha compositing functionality in hardware.  If set, the window
-         manager will disable alpha trasformation in animations where not
-         strictly needed. -->
-    <bool name="config_sf_limitedAlpha">true</bool>
-
-    <!-- passion doesn't handle this blur effect very quickly. -->
-    <bool name="config_sf_slowBlur">true</bool>
-
     <!-- Array of light sensor LUX values to define our levels for auto backlight brightness support.
          The N entries of this array define N + 1 zones as follows:
 
@@ -50,6 +41,7 @@
         <item>200</item>
         <item>400</item>
         <item>1000</item>
+	<item>2000</item>
         <item>3000</item>
     </integer-array>
 
@@ -58,9 +50,9 @@
          than the size of the config_autoBrightnessLevels array. -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
         <item>35</item>
-        <item>55</item>
         <item>70</item>
-        <item>70</item>
+        <item>120</item>
+        <item>180</item>
         <item>250</item>
     </integer-array>
 
@@ -86,13 +78,6 @@
         <item>0</item>
         <item>0</item>
     </integer-array>
-
-    <!-- Component name of the default wallpaper. This will be ImageWallpaper if not
-         specified -->
-    <string name="default_wallpaper_component">com.android.wallpaper/.nexus.NexusWallpaper</string>
-
-    <integer name="config_deskDockKeepsScreenOn">0</integer>
-    <integer name="config_carDockKeepsScreenOn">1</integer>
 
     <!-- Default color for notification LED is white (new color is cyan) -->
     <color name="config_defaultNotificationColor">#ffffffff</color>

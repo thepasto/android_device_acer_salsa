@@ -1,10 +1,13 @@
 #!/system/bin/sh
 #
-#      Enable Compcache With BackingSwap Support 
+#      Enable Compcache Before SWAP in a1 device
 #
 
 RAM=$(cat /proc/meminfo | grep MemTotal | awk '{print $2}')
-SDSWAP=$(fdisk -l /dev/block/mmcblk0 | grep 82 | awk '{print $1}' | tail -n1)
+SDSWAP=$(fdisk -l /dev/block/mmcblk0 | grep "82 Linux swap" | awk '{print $1}' | tail -n1)
+
+handle_compcache &
+sleep 2
 
 if [ $RAM -lt "200000" ]; then
 
@@ -14,17 +17,5 @@ if [ $RAM -lt "200000" ]; then
 	else
 		SWAP=$SDSWAP
 	fi
-
-	compcache stop
-	swapoff $SWAP >/dev/null 2>&1
-	handle_compcache $SWAP &
-
-	MSWAP=$(cat proc/swaps | grep partition)
-
-	if [ -z "$MSWAP" ] && [ -n "$SDSWAP" ]; then
-		swapon $SDSWAP
-	fi
-
-else 
-	handle_compcache &
+	swapon $SWAP
 fi
