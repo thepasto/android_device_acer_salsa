@@ -32,6 +32,17 @@
 
 #include <hardware/lights.h>
 
+static pthread_once_t g_init = PTHREAD_ONCE_INIT;
+static pthread_mutex_t g_lock = PTHREAD_MUTEX_INITIALIZER;
+static int g_haveTrackballLight = 0;
+static struct light_state_t g_notification;
+static struct light_state_t g_battery;
+static int g_backlight = 255;
+static int g_trackball = -1;
+static int g_buttons = 0;
+static int g_attention = 0;
+static int g_haveAmberLed = 0;
+
 char const*const POWER_LED_FILE
         = "/sys/class/leds2/power";
 
@@ -104,37 +115,51 @@ static int set_light_battery(struct light_device_t* dev,
 		//Off
 		write_int(POWER_LED_FILE, 0);
 	}
-	LOGE("Light battery: %p %d\n", state->color,state->flashMode);
+	LOGE("Light battery: %p\n", state->color);
 	return 0;
 }
 
 static int set_light_notifications(struct light_device_t* dev,
 		struct light_state_t const* state) {
-		if(state->color == 0xffffff) {
-			//Notification on
-			//Slow blink
-			LOGE("MAIL WRITE");
-			write_int(MAIL_LED_FILE, 1);
-			//write_int(CALL_LED_FILE, 3);
-		} 
-		else if(state->color == 0x00) {
-			//Notification off
-			//Off
-			LOGE("OFF");
-			write_int(MAIL_LED_FILE, 0);
-			write_int(CALL_LED_FILE, 0);
-		} 
-		else { //ANY COLOR 
-			//Notification on
-			//Slow blink
-			//write_int(MAIL_LED_FILE, 0);
-			LOGE("CALL WRITE");
-			write_int(CALL_LED_FILE, 1);
-		}
+			if(state->color == 0xffffff) {
+				//Notification on
+				//Slow blink
+				LOGE("MAIL WRITE");
+				write_int(MAIL_LED_FILE, 1);
+				//write_int(CALL_LED_FILE, 3);
+			} 
+			else if(state->color == 0x00) {
+				//Notification off
+				//Off
+				LOGE("OFF");
+				write_int(MAIL_LED_FILE, 0);
+				write_int(CALL_LED_FILE, 0);
+			} 
+			else { //ANY COLOR 
+				//Notification on
+				//Slow blink
+				//write_int(MAIL_LED_FILE, 0);
+				LOGE("CALL WRITE");
+				write_int(CALL_LED_FILE, 1);
+			}
 
 	LOGE("Notification led: %p(%d,%d,%d)\n", state->color, state->flashMode, state->flashOnMS, state->flashOffMS);
 	return 0;
 }
+
+static int
+set_light_buttons(struct light_device_t* dev,
+        struct light_state_t const* state)
+{
+    int err = 0;
+    int on = is_lit(state);
+    pthread_mutex_lock(&g_lock);
+    g_buttons = on;
+    err = write_int(BOTT_LED_FILE, on?16:0);
+    pthread_mutex_unlock(&g_lock);
+    return err;
+}
+
 
 /** Close the lights device */
 static int close_lights(struct light_device_t *dev) {
@@ -158,13 +183,12 @@ static int open_lights(const struct hw_module_t* module, char const* name,
 			struct light_state_t const* state);
 
 	if (0 == strcmp(LIGHT_ID_BACKLIGHT, name)) {
-		LOGE("backlight");
 		set_light = set_light_backlight;
+	} else if (0 == strcmp(LIGHT_ID_BUTTONS, name)) {
+		set_light = set_light_buttons;
 	} else if (0 == strcmp(LIGHT_ID_BATTERY, name)) {
-		LOGE("battery");
 		set_light = set_light_battery;
 	} else if (0 == strcmp(LIGHT_ID_NOTIFICATIONS, name)) {
-		LOGE("notification");
 		set_light = set_light_notifications;
 	} else {
 		return -EINVAL;
