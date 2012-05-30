@@ -30,7 +30,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
         gralloc.qsd8k \
         camera.qsd8k \
-        hwcomposer.qsd8k \
         libQcomUI \
         libtilerenderer \
         liboverlay \
