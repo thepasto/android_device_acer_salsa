@@ -82,7 +82,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.gprsclass=10 \
     ro.setupwizard.enable_bypass=1 \
     dalvik.vm.lockprof.threshold=500 \
-    dalvik.vm.dexopt-flags=m=y \
+    dalvik.vm.verify-bytecode=false \
+    dalvik.vm.dexopt-flags=v=n,o=v \
     debug.sf.hw=1 \
     ro.com.google.locationfeatures=1 \
     ro.media.dec.aud.wma.enabled=1 \
@@ -101,7 +102,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Speed up scrolling
 PRODUCT_PROPERTY_OVERRIDES += \
-    windowsmgr.max_events_per_sec=60
+    windowsmgr.max_events_per_sec=120
 
 # Default network type.
 # 0 => WCDMA preferred, 3 => GSM/AUTO (PRL) preferred
