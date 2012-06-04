@@ -60,7 +60,13 @@ PRODUCT_COPY_FILES += \
     device/acer/salsa/prebuilt/bcm4329.ko:system/lib/modules/bcm4329.ko \
     device/acer/salsa/prebuilt/cifs.ko:system/lib/modules/cifs.ko \
     device/acer/salsa/prebuilt/ramzswap.ko:system/lib/modules/ramzswap.ko \
-    device/acer/salsa/prebuilt/tun.ko:system/lib/modules/tun.ko
+    device/acer/salsa/prebuilt/tun.ko:system/lib/modules/tun.ko \
+    device/acer/salsa/prebuilt/03swaps:system/etc/init.d/03swaps \
+    device/acer/salsa/prebuilt/05mountext:system/etc/init.d/05mountext \
+    device/acer/salsa/prebuilt/10apps2sd:system/etc/init.d/10apps2sd \
+    device/acer/salsa/prebuilt/a2sd:system/bin/a2sd \
+    device/acer/salsa/prebuilt/fix_permissions:system/bin/fix_permissions \
+    device/acer/salsa/prebuilt/zipalign:system/bin/zipalign 
 
 ## (2) Also get non-open-source GSM-specific aspects if available
 $(call inherit-product-if-exists, vendor/acer/salsa/salsa-vendor.mk)
