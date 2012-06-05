@@ -9,6 +9,7 @@ $(call inherit-product-if-exists, vendor/acer/salsa/salsa-vendor.mk)
 PRODUCT_PACKAGES += \
 	librs_jni \
 	screencap \
+	LiquidParts \
 	lights.salsa \
 	copybit.salsa \
 	gralloc.salsa \
@@ -130,7 +131,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapsize=48m \
     persist.android.strictmode=0 \
     persist.sys.scrollingcache=2
-
 
 # Overrides
 PRODUCT_BRAND := acer
