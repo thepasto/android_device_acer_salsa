@@ -1,0 +1,12 @@
+diff --git a/core/main.mk b/core/main.mk
+index b99340c..8ca3630 100644
+--- a/build/core/main.mk
++++ b/build/core/main.mk
+@@ -283,7 +283,6 @@ ifneq ($(filter dalvik.gc.type-precise,$(PRODUCT_TAGS)),)
+   # additional storage requirements for ".odex" files can cause /system
+   # to overflow on some devices, so this is configured separately for
+   # each product.
+-  ADDITIONAL_BUILD_PROPERTIES += dalvik.vm.dexopt-flags=m=y
+ endif
+ 
+ # Install an apns-conf.xml file if one's not already being installed.
