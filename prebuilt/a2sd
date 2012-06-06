@@ -322,17 +322,12 @@ echo -e "$SD_EXT_DIRECTORY not present...nothing to do"
     "formatext")
             is_a2sd_active
             echo -e "Warning this will erase everything on $SD_EXT_DIRECTORY"
-            read -p "Do you want to continue? (y|n) " answer
-            if [ "$answer" != "y" ]; then
-abort
-            fi;
             $bb sync
             echo -e "unmounting $SD_EXT_DIRECTORY"
             $bb umount "$SD_EXT_DIRECTORY"
             echo -e "formating $a2sdblk"
             $make2fs $a2sdblk
             echo -e "$ck done..."
-            reboot_now
             ;;
     "checkext")
             is_a2sd_active
