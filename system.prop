@@ -20,7 +20,7 @@ ro.telephony.ril.v3=skipbrokendatacall,signalstrength
 persist.sys.strictmode.disable=true
 
 # Set usb type
-persist.sys.usb.config=mtp,adb
+persist.sys.usb.config=mass_storage,adb
 
 # Composition
 debug.composition.type=mdp
