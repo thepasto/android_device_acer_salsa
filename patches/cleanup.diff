@@ -1,5 +1,5 @@
 diff --git a/vendor/cm/config/common.mk b/vendor/cm/config/common.mk
-index d183a85..ed592c1 100644
+index 6b3e317..03d2f8e 100644
 --- a/vendor/cm/config/common.mk
 +++ b/vendor/cm/config/common.mk
 @@ -51,7 +51,6 @@ PRODUCT_COPY_FILES += \
@@ -9,6 +9,7 @@ index d183a85..ed592c1 100644
 -    vendor/cm/proprietary/RomManager.apk:system/app/RomManager.apk \
      vendor/cm/proprietary/Term.apk:system/app/Term.apk \
      vendor/cm/proprietary/lib/armeabi/libjackpal-androidterm4.so:system/lib/libjackpal-androidterm4.so
+ 
 diff --git a/vendor/cm/config/common_full_phone.mk b/vendor/cm/config/common_full_phone.mk
 index 8d69ead..342b1c7 100644
 --- a/vendor/cm/config/common_full_phone.mk
