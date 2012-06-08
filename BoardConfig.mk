@@ -102,14 +102,15 @@ BOARD_SDCARD_INTERNAL_DEVICE := /dev/block/mmcblk0p1
 BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 
 #recovery
-BOARD_HAS_NO_MISC_PARTITION := true
-BOARD_USES_RECOVERY_CHARGEMODE := false
-BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/acer/salsa/recovery/recovery_keys.c
-TARGET_RECOVERY_PRE_COMMAND := "touch /cache/recovery/boot;sync;"
-TARGET_RECOVERY_INITRC := device/acer/salsa/recovery.rc
+#BOARD_HAS_NO_MISC_PARTITION := true
+#BOARD_USES_RECOVERY_CHARGEMODE := false
+#BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/acer/salsa/recovery/recovery_keys.c
+#TARGET_RECOVERY_PRE_COMMAND := "touch /cache/recovery/boot;sync;"
+#TARGET_RECOVERY_INITRC := device/acer/salsa/recovery.rc
 #TARGET_PREBUILT_RECOVERY_KERNEL := device/acer/salsa/recovery_kernel
 
-#twrp
+#twrp recovery
+TARGET_RECOVERY_INITRC := device/acer/salsa/recovery.rc
 TARGET_RECOVERY_PIXEL_FORMAT := "RGB_565"
 DEVICE_RESOLUTION := 480x800
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun"
