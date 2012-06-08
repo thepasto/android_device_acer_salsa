@@ -22,7 +22,8 @@ PRODUCT_COPY_FILES += \
     device/acer/salsa/proprietary/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
     device/acer/salsa/proprietary/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
     device/acer/salsa/proprietary/copybit.qsd8k.so:system/lib/hw/copybit.qsd8k.so \
-    device/acer/salsa/proprietary/hwcomposer.qsd8k.so:system/lib/hw/hwcomposer.qsd8k.so
+    device/acer/salsa/proprietary/hwcomposer.qsd8k.so:system/lib/hw/hwcomposer.qsd8k.so \
+    device/acer/salsa/proprietary/GooManager.apk:system/app/GooManager.apk
 
 ## (2) Keypad and Touchscreen
 PRODUCT_COPY_FILES += \

@@ -23,10 +23,12 @@ PRIVATE_BUILD_DESC="yakju-user 4.0.4 IMM76D 299849 release-keys"
 PRODUCT_RELEASE_NAME := A1
 PRODUCT_VERSION_DEVICE_SPECIFIC := -Liquid-WAG-Team
 
-PRODUCT_PACKAGES += \
-    Camera
-#    UsbMassStorage
-#    CMSettings \
+# Goo.im configuration
+    GOO_VERSION := $(shell date +%Y%m%d)
+PRODUCT_PROPERTY_OVERRIDES += \
+ro.goo.developerid=thepasto \
+ro.goo.rom=CM9-Liquid-WAG-Team \
+ro.goo.version=$(GOO_VERSION)
 
 # Get eng stuff on our userdebug builds
 ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
