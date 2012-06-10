@@ -128,7 +128,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # This is a high density device with more memory, so larger vm heaps for it.
 PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapsize=48m \
+    dalvik.vm.heapsize=32m \
     persist.android.strictmode=0 \
     persist.sys.scrollingcache=2
 
