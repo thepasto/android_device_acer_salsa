@@ -108,10 +108,10 @@ BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 #TARGET_RECOVERY_PRE_COMMAND := "touch /cache/recovery/boot;sync;"
 #TARGET_RECOVERY_INITRC := device/acer/salsa/recovery.rc
 #TARGET_PREBUILT_RECOVERY_KERNEL := device/acer/salsa/recovery_kernel
+#TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun"
 
 #twrp recovery
 TARGET_RECOVERY_INITRC := device/acer/salsa/recovery.rc
 TARGET_RECOVERY_PIXEL_FORMAT := "RGB_565"
 DEVICE_RESOLUTION := 480x800
-TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun"
 TW_FLASH_FROM_STORAGE := true
