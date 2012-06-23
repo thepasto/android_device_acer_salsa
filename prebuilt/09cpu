@@ -1,4 +1,0 @@
-#!/system/bin/sh
-#script created by Liquid Settings App
-#
-echo "noop" > /sys/block/mmcblk0/queue/scheduler
