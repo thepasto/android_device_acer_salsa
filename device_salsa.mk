@@ -67,7 +67,8 @@ PRODUCT_COPY_FILES += \
     device/acer/salsa/prebuilt/10apps2sd:system/etc/init.d/10apps2sd \
     device/acer/salsa/prebuilt/a2sd:system/bin/a2sd \
     device/acer/salsa/prebuilt/fix_permissions:system/bin/fix_permissions \
-    device/acer/salsa/prebuilt/zipalign:system/bin/zipalign 
+    device/acer/salsa/prebuilt/zipalign:system/bin/zipalign \
+    device/acer/salsa/prebuilt/GooManager.apk:system/app/GooManager.apk
 
 ## (2) Also get non-open-source GSM-specific aspects if available
 $(call inherit-product-if-exists, vendor/acer/salsa/salsa-vendor.mk)
@@ -131,6 +132,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapsize=48m \
     persist.android.strictmode=0 \
     persist.sys.scrollingcache=2
+
+# Goo.im configuration
+    GOO_VERSION := $(shell date +%Y%m%d)
+PRODUCT_PROPERTY_OVERRIDES += \
+ro.goo.developerid=thepasto \
+ro.goo.rom=CM9-Liquid-WAG-Team \
+ro.goo.version=$(GOO_VERSION)
 
 # Overrides
 PRODUCT_BRAND := acer

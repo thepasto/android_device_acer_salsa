@@ -37,3 +37,5 @@ for p in $(find device/acer/salsa/patches/ -name "*.diff")
 		echo "" 
 	done
 echo ""
+echo -n "Get GooManager "
+./device/acer/salsa/get_GooMan.sh
