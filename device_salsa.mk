@@ -136,7 +136,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     GOO_VERSION := $(shell date +%Y%m%d)
 PRODUCT_PROPERTY_OVERRIDES += \
 ro.goo.developerid=thepasto \
-ro.goo.rom=CM9-Liquid-WAG-Team \
+ro.goo.rom=CM7.2-Liquid \
 ro.goo.version=$(GOO_VERSION)
 
 # Overrides
