@@ -238,7 +238,7 @@ static const target_map targetList [] = {
     { "qsd8250", TARGET_QSD8250 },
     { "msm7630", TARGET_MSM7630 }
 };
-static targetType mCurrentTarget = TARGET_QSD8250;
+static targetType mCurrentTarget = TARGET_MSM7625;
 
 typedef struct {
     uint32_t aspect_ratio;
@@ -802,7 +802,7 @@ void QualcommCameraHardware::storeTargetType(void) {
             break;
         }
     }
-    mCurrentTarget = TARGET_QSD8250;
+    mCurrentTarget = TARGET_MSM7625;
     LOGV(" Storing the current target type as %d ", mCurrentTarget );
     return;
 }
@@ -1109,7 +1109,7 @@ void QualcommCameraHardware::initDefaultParameters()
 
     mParameters.set("luma-adaptation", "3");
     mParameters.set("zoom-supported", "true");
-    mParameters.set("zoom-ratios", "100,200,300,400,500,600,800");
+    mParameters.set("zoom-ratios", "100,200,300,400,500,600");
     mParameters.set("max-zoom", MAX_ZOOM_LEVEL);
     mParameters.set("zoom", 0);
     mParameters.set(CameraParameters::KEY_PICTURE_FORMAT,
@@ -4267,19 +4267,16 @@ status_t QualcommCameraHardware::setZoom(const CameraParameters& params)
     int32_t zoom_level = params.getInt("zoom");
 
     LOGV("Set zoom=%d", zoom_level);
-    /*if(zoom_level >= 0 && zoom_level <= mMaxZoom) {
+    if(zoom_level >= 0 && zoom_level <= mMaxZoom) {
         mParameters.set("zoom", zoom_level);
         int32_t zoom_value = ZOOM_STEP * zoom_level;
         bool ret = native_set_parm(CAMERA_SET_PARM_ZOOM,
             sizeof(zoom_value), (void *)&zoom_value);
         rc = ret ? NO_ERROR : UNKNOWN_ERROR;
     } else {
-}*/
         rc = BAD_VALUE;
-    
-	LOGV("MaxZoom=%d",mMaxZoom);
-	//LOGV("zoom_value=%d",zoom_value);
-	
+    }
+
     return rc;
 }
 
