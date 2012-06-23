@@ -63,7 +63,6 @@ PRODUCT_COPY_FILES += \
     device/acer/salsa/prebuilt/ramzswap.ko:system/lib/modules/ramzswap.ko \
     device/acer/salsa/prebuilt/tun.ko:system/lib/modules/tun.ko \
     device/acer/salsa/prebuilt/03swaps:system/etc/init.d/03swaps \
-    device/acer/salsa/prebuilt/05mountext:system/etc/init.d/05mountext \
     device/acer/salsa/prebuilt/09cpu:system/etc/init.d/09cpu \
     device/acer/salsa/prebuilt/10apps2sd:system/etc/init.d/10apps2sd \
     device/acer/salsa/prebuilt/a2sd:system/bin/a2sd \
@@ -129,7 +128,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # This is a high density device with more memory, so larger vm heaps for it.
 PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapsize=32m \
+    dalvik.vm.heapsize=48m \
     persist.android.strictmode=0 \
     persist.sys.scrollingcache=2
 
