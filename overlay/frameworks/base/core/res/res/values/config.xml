@@ -39,7 +39,9 @@
     <integer-array name="config_autoBrightnessLevels">
         <item>200</item>
         <item>400</item>
+        <item>600</item>
         <item>1000</item>
+        <item>2000</item>
         <item>3000</item>
     </integer-array>
 
@@ -48,10 +50,12 @@
          than the size of the config_autoBrightnessLevels array.
     -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
-        <item>51</item>
-        <item>102</item>
-        <item>153</item>
-        <item>204</item>
+        <item>20</item>       
+        <item>50</item>
+        <item>100</item>
+        <item>130</item>
+        <item>170</item>
+        <item>200</item>
         <item>255</item>
     </integer-array>
 
@@ -62,6 +66,8 @@
     <integer-array name="config_autoBrightnessButtonBacklightValues">
         <item>255</item>
         <item>255</item>
+        <item>0</item>
+        <item>0</item>
         <item>0</item>
         <item>0</item>
         <item>0</item>
@@ -78,6 +84,8 @@
         <item>0</item>
         <item>0</item>
         <item>0</item>
+	<item>0</item>
+	<item>0</item>
     </integer-array>
 
     <integer name="config_deskDockKeepsScreenOn">0</integer>
