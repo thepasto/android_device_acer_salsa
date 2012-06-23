@@ -7,7 +7,7 @@ index 44eb228..14e5ad1 100644
  
      // How long to wait to debounce light sensor changes.
 -    private static final int LIGHT_SENSOR_DELAY = 2000;
-+    private static final int LIGHT_SENSOR_DELAY = 200;
++    private static final int LIGHT_SENSOR_DELAY = 800;
  
      // For debouncing the proximity sensor.
 -    private static final int PROXIMITY_SENSOR_DELAY = 1000;
