@@ -32,16 +32,6 @@
 
 #include <hardware/lights.h>
 
-static pthread_once_t g_init = PTHREAD_ONCE_INIT;
-static pthread_mutex_t g_lock = PTHREAD_MUTEX_INITIALIZER;
-static int g_haveTrackballLight = 0;
-static struct light_state_t g_notification;
-static struct light_state_t g_battery;
-static int g_backlight = 255;
-static int g_trackball = -1;
-static int g_buttons = 0;
-static int g_attention = 0;
-static int g_haveAmberLed = 0;
 
 char const*const POWER_LED_FILE
         = "/sys/class/leds2/power";
@@ -121,7 +111,7 @@ static int set_light_battery(struct light_device_t* dev,
 
 static int set_light_notifications(struct light_device_t* dev,
 		struct light_state_t const* state) {
-			if(state->color == 0xffffff) {
+			if(state->color == 0xffffffff) {
 				//Notification on
 				//Slow blink
 				LOGE("MAIL WRITE");
@@ -151,13 +141,7 @@ static int
 set_light_buttons(struct light_device_t* dev,
         struct light_state_t const* state)
 {
-    int err = 0;
-    int on = is_lit(state);
-    pthread_mutex_lock(&g_lock);
-    g_buttons = on;
-    err = write_int(BOTT_LED_FILE, on?16:0);
-    pthread_mutex_unlock(&g_lock);
-    return err;
+       return 0;
 }
 
 
