@@ -37,33 +37,25 @@
 
          Must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLevels">
-	<item>90</item>
-        <item>300</item>
-        <item>600</item>
-        <item>1000</item>
-  	<item>1300</item>
-        <item>1600</item>
-        <item>2000</item>
-  	<item>2300</item>
-        <item>2500</item>
+        <item>200</item>
+        <item>400</item>
+	<item>600</item>
+	<item>1000</item>
+	<item>2000</item>
         <item>3000</item>
-    </integer-array>
+   </integer-array>
 
     <!-- Array of output values for LCD backlight corresponding to the LUX values
          in the config_autoBrightnessLevels array.  This array should have size one greater
          than the size of the config_autoBrightnessLevels array.
     -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
-        <item>20</item> 
-        <item>43</item>
-        <item>64</item>
-        <item>85</item>
-        <item>127</item>      
-        <item>148</item>
-        <item>169</item>
-        <item>191</item>
-        <item>212</item>
-        <item>233</item>
+        <item>25</item> 
+        <item>50</item>
+        <item>90</item>
+        <item>130</item>
+        <item>170</item>  
+	<item>200</item>
         <item>255</item>
     </integer-array>
 
@@ -76,10 +68,6 @@
  	<item>255</item>
         <item>0</item>
         <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-	<item>0</item>
         <item>0</item>
         <item>0</item>
         <item>0</item>
@@ -98,10 +86,6 @@
         <item>0</item>
 	<item>0</item>
 	<item>0</item>  
-	<item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
     </integer-array>
 
     <integer name="config_deskDockKeepsScreenOn">0</integer>
