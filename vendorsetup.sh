@@ -19,6 +19,14 @@
 # In particular, you can add lunch options with the add_lunch_combo
 # function: add_lunch_combo generic-eng
 
+ME=$(whoami)@$(hostname)
+
+if [[ $ME == "thepasto@laptop" ]];then
+	export J2SDKDIR=/opt/java6
+	export J2REDIR=$J2SDKDIR/jre
+	export JAVA_HOME=$J2SDKDIR
+fi
+
 add_lunch_combo cm_salsa-userdebug
 add_lunch_combo cm_salsa-eng
 add_lunch_combo cm_salsa-user
