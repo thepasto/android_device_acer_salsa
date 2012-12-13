@@ -83,10 +83,6 @@ struct board_property{
 #define CAMERA_MAX_SATURATION 10
 #define CAMERA_MAX_EXPOSURE_COMPENSATION 8
 
-#define CAMERA_ZOOM_STEP 1
-#define CAMERA_MIN_ZOOM 1
-#define CAMERA_MAX_ZOOM_STEPS 40
-
 #define CAMERA_DEF_ZOOM 0
 #define CAMERA_DEF_SHARPNESS 10
 #define CAMERA_DEF_CONTRAST 6
@@ -122,6 +118,12 @@ struct board_property{
 #define DEFAULT_FPS 15
 #define MAXIMUM_FPS 25
 
+/*
+* in1 is original dimensions for thumbnail
+* in2 is original dimensions for picture frame size
+* out1 is cropped dimensions for thumbnail
+* out2 is cropped dimensions for picture frame size
+*/
 typedef struct {
 	unsigned int in1_w;
 	unsigned int in1_h;
@@ -133,20 +135,6 @@ typedef struct {
 	unsigned int out2_h;
 	uint8_t update_flag; 
 } common_crop_t;
-
-typedef struct {
-	int current_value;
-	int step_value;
-	int minimum_value;
-	uint8_t maximum_value;
-} cam_parm_zoom_info_t;
-
-#if 1
-typedef struct {
-	int32_t steps;
-	int dir;
-} cam_parm_focus_cfg_t;
-#endif
 
 typedef uint8_t cam_ctrl_type;
 
@@ -218,7 +206,7 @@ enum {
 };
 
 typedef enum {
-	CAMERA_ISO_AUTO,
+	CAMERA_ISO_AUTO = 0,
 	CAMERA_ISO_DEBLUR,
 	CAMERA_ISO_100,
 	CAMERA_ISO_200,
