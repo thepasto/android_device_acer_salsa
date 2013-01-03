@@ -32,6 +32,16 @@
 
 #include <hardware/lights.h>
 
+enum{
+	LED_OFF,
+	SLOW_BLINKING,
+	FAST_BLINKING,
+	ALWAYS_ON,
+};
+
+#define CALL_NOTIFICATION   0x1
+#define MAIL_NOTIFICATION   0x2
+
 char const*const POWER_LED_FILE
         = "/sys/class/leds2/power";
 
@@ -43,6 +53,8 @@ char const*const CALL_LED_FILE
 
 char const*const BOTT_LED_FILE
         = "/sys/class/leds2/bottom";
+
+static pthread_mutex_t g_lock = PTHREAD_MUTEX_INITIALIZER;
 
 static int write_int(char const* path, int value) {
 	int fd;
@@ -82,54 +94,77 @@ static int set_light_backlight(struct light_device_t* dev,
 
 static int set_light_battery(struct light_device_t* dev,
 		struct light_state_t const* state) {
+	int led_state = LED_OFF;
+
 	if(state->color == 0xFFFF0000) {
 		if(state->flashMode==LIGHT_FLASH_TIMED) {
 			//Low and not charging
 			//Fast blink
-			write_int(POWER_LED_FILE, 2);
+			led_state = FAST_BLINKING;
 		} else {
 			//Low and charging
 			//Slow blink
-			write_int(POWER_LED_FILE, 1);
+			led_state = SLOW_BLINKING;
 		}
 	} else if(state->color==0xFF00FF00) {
 		//Charging and full
 		//Fixed
-		write_int(POWER_LED_FILE, 3);
+		led_state = ALWAYS_ON;
 	} else if(state->color==0xFFFFFF00) {
 		//Charging
-		//Slow blink
-		write_int(POWER_LED_FILE, 1);
+		led_state = SLOW_BLINKING;
 	} else {
 		//Off
-		write_int(POWER_LED_FILE, 0);
+		led_state = LED_OFF;
 	}
+
+	pthread_mutex_lock(&g_lock);
+	write_int(POWER_LED_FILE, led_state);
+	pthread_mutex_unlock(&g_lock);
+
 	LOGE("Light battery: %p\n", state->color);
 	return 0;
 }
 
 static int set_light_notifications(struct light_device_t* dev,
 		struct light_state_t const* state) {
+	int notification_type = -1;
+	int led_state = LED_OFF;
+
 			if(state->color == 0xffffff) {
 				//Notification on
 				//Slow blink
 				LOGE("MAIL WRITE");
-				write_int(MAIL_LED_FILE, 1);
 				//write_int(CALL_LED_FILE, 3);
+				notification_type = MAIL_NOTIFICATION;
+				led_state = SLOW_BLINKING;
 			} 
 			else if(state->color == 0x00) {
 				//Notification off
 				//Off
 				LOGE("OFF");
-				write_int(MAIL_LED_FILE, 0);
-				write_int(CALL_LED_FILE, 0);
+				notification_type = MAIL_NOTIFICATION | CALL_NOTIFICATION;
+				led_state = LED_OFF;
 			} 
 			else { //ANY COLOR 
 				//Notification on
 				//Slow blink
 				//write_int(MAIL_LED_FILE, 0);
 				LOGE("CALL WRITE");
-				write_int(CALL_LED_FILE, 1);
+				notification_type = CALL_NOTIFICATION;
+				led_state = SLOW_BLINKING;
+			}
+
+			if ((CALL_NOTIFICATION & notification_type) == CALL_NOTIFICATION) {
+				pthread_mutex_lock(&g_lock);
+				write_int(CALL_LED_FILE, led_state);
+				pthread_mutex_unlock(&g_lock);
+			}
+
+			if ((MAIL_NOTIFICATION & notification_type) == MAIL_NOTIFICATION) {
+				pthread_mutex_lock(&g_lock);
+				write_int(MAIL_LED_FILE, led_state);
+				pthread_mutex_unlock(&g_lock);
 			}
 
 	LOGE("Notification led: %p(%d,%d,%d)\n", state->color, state->flashMode, state->flashOnMS, state->flashOffMS);
@@ -176,6 +211,8 @@ static int open_lights(const struct hw_module_t* module, char const* name,
 	} else {
 		return -EINVAL;
 	}
+
+	pthread_mutex_init(&g_lock, NULL);
 
 	struct light_device_t *dev = malloc(sizeof(struct light_device_t));
 	memset(dev, 0, sizeof(*dev));
